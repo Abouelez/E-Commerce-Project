@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Products</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Top Banner -->
+  <div class="top-banner">
+    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+    <a href="#">Shop Now</a>
+  </div>
+
+  <!-- Header -->
+  <header class="header flex space-between align-center wrap">
+    <div class="logo">Exclusive</div>
+    <nav class="nav-links flex wrap">
+      <a href="#" class="active">Home</a>
+      <a href="#">Contact</a>
+      <a href="#">About</a>
+      <a href="#">Sign Up</a>
+    </nav>
+    <div class="search-container flex align-center">
+      <input type="text" placeholder="What are you looking for?" />
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="icons flex align-center">
+      <i class="far fa-heart"></i>
+      <div class="cart-icon relative">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge">2</span>
+      </div>
+      <div class="user-icon">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+  </header>
+
+  <header>
+    <h1 class="page-title">All Products</h1>
+  </header>
+
+  <section class="filters">
+    <input type="text" placeholder="Search products..." class="search-input" />
+
+    <select class="filter-dropdown">
+      <option value="">All Categories</option>
+      <option value="men">Men</option>
+      <option value="women">Women</option>
+      <option value="kids">Kids</option>
+      <option value="accessories">Accessories</option>
+    </select>
+
+    <div class="price-range">
+      <input type="number" placeholder="Min Price" class="price-input" />
+      <span>–</span>
+      <input type="number" placeholder="Max Price" class="price-input" />
+    </div>
+
+    <button class="filter-btn">Apply Filters</button>
+  </section>
+
+  <section class="products-grid">
+    <div class="product-card">
+      <img src="product1.jpg" alt="Product 1" />
+      <h3>Product 1</h3>
+      <p>$29.99</p>
+    </div>
+    <div class="product-card">
+      <img src="product2.jpg" alt="Product 2" />
+      <h3>Product 2</h3>
+      <p>$34.99</p>
+    </div>
+    <!-- More product cards... -->
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container flex wrap space-between">
+      <div class="footer-column">
+        <h3>Exclusive</h3>
+        <p>Subscribe</p>
+        <span>Get 10% off your first order</span>
+        <div class="subscribe-box flex">
+          <input type="email" placeholder="Enter your email" />
+          <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+        <p>exclusive@gmail.com</p>
+        <p>+88015-88888-9999</p>
+      </div>
+      <div class="footer-column">
+        <h4>Account</h4>
+        <a href="#">My Account</a>
+        <a href="#">Login / Register</a>
+        <a href="#">Cart</a>
+        <a href="#">Wishlist</a>
+        <a href="#">Shop</a>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Link</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms Of Use</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-column">
+        <h4>Download App</h4>
+        <p>Save $3 with App New User Only</p>
+        <div class="download-app flex">
+          <img src="qr-code.png" alt="QR Code" class="qr" />
+          <div class="store-buttons">
+            <img src="google-play.png" alt="Google Play" />
+            <img src="app-store.png" alt="App Store" />
+          </div>
+        </div>
+        <div class="social-icons flex">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; Copyright Rimel 2022. All right reserved</p>
+    </div>
+  </footer>
+</body>
+</html>
