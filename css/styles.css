@@ -1,0 +1,219 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+  }
+
+  /* Add these styles to your existing CSS */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Login page styles */
+.login-container {
+  display: flex;
+  height: 100vh;
+  background-color: #ffffff;
+  background-image: url(/assets/imgs/bg10.jpeg) ;
+  background-size: cover ;
+  background-repeat: no-repeat ;
+}
+
+.login-image {
+  flex: 1;
+  background-image: url('/assets/imgs/login2.svg');
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-image2 {
+  flex: 1;
+  background-image: url('/assets/imgs/signup.svg');
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.login-image3 {
+  flex: 1;
+  background-image: url('/assets/imgs/Reset\ password-rafiki.svg');
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin: 2rem;
+  max-width: 450px;
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-logo img {
+  width: 125px;
+  margin-bottom: -5px;
+}
+
+.login-logo h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+#login-form , #register-form, #reset-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group input {
+  width: 93%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f0f4f8;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.forgot-password a {
+  color: #0099ff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.btn-login:hover {
+  background-color: #0077cc;
+}
+
+/* Add this to your existing login styles */
+.signup-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.signup-link a {
+  color: #0099ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+.signup-link p{
+  font-size: 14px; 
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Forgot password styles */
+.reset-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.reset-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  width: 60%;
+}
+
+.btn-cancel {
+  width: 30%;
+  flex: 1;
+  padding: 5px;
+  background-color: #f0f0f0;
+  color:#716E6D;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.btn-reset {
+  width: 55%;
+  padding: 12px;
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+.btn-cancel:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-login {
+  flex: 1;
+}
