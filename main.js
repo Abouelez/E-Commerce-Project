@@ -1,4 +1,5 @@
 import User from './models/User.js';
+import UserValidator from './validation/UserValidator.js';
 
 // user.update(1, {
 //     name: "Abdulrahman"
@@ -32,6 +33,15 @@ import User from './models/User.js';
 //     Router.init();
 // })
 
-User.getAll().then((d)=>{
-    console.log(d); //view on html page instead.
-})
+// User.getAll().then((d)=>{
+//     console.log(d); //view on html page instead.
+// })
+
+UserValidator.validate({
+    name: "Abdulrahman Ezz",
+    username: "admin5",
+    email: "admin@gmail.com",
+    role: "admin"
+}).then((d) => {
+    console.log(d);
+});
