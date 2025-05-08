@@ -19,26 +19,26 @@
       </div>
       <form id="register-form" method="post">
         <div class="form-group">
-          <input type="text" id="name" placeholder="Full Name" required>
+          <input type="text" id="name" placeholder="Full Name">
           <span class="error-message" id="name-error"></span>
         </div>
         <div class="form-group">
-          <input type="email" id="email" placeholder="Email" required>
+          <input type="email" id="email" placeholder="Email">
           <span class="error-message" id="email-error"></span>
         </div>
         <div class="form-group">
-          <input type="password" id="password" placeholder="Password" required>
+          <input type="password" id="password" placeholder="Password">
           <span class="error-message" id="password-error"></span>
         </div>
         <div class="form-group">
           <label style="display: block; margin-bottom: 8px; color: #333;">Account Type:</label>
           <div style="display: flex; gap: 20px;">
             <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
-              <input type="radio" name="role" value="customer" required>
+              <input type="radio" name="role" id="role" value="customer">
               Customer
             </label>
             <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
-              <input type="radio" name="role" value="seller" required>
+              <input type="radio" name="role" value="seller"  >
               Seller
             </label>
           </div>
