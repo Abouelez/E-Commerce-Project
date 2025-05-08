@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - E-commerce Platform</title>
   <link rel="stylesheet" href="/css/styles.css">
+  <script type="module" src="/js/registerAction.js"></script>
 </head>
 <body>
   <div class="login-container">
@@ -16,20 +17,34 @@
         <img src="/assets/imgs/2591708.png" alt="Logo">
         <h2>Create Account</h2>
       </div>
-      <form id="register-form">
+      <form id="register-form" method="post">
         <div class="form-group">
           <input type="text" id="name" placeholder="Full Name" required>
+          <span class="error-message" id="name-error"></span>
         </div>
         <div class="form-group">
           <input type="email" id="email" placeholder="Email" required>
+          <span class="error-message" id="email-error"></span>
         </div>
         <div class="form-group">
           <input type="password" id="password" placeholder="Password" required>
+          <span class="error-message" id="password-error"></span>
         </div>
         <div class="form-group">
-          <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+          <label style="display: block; margin-bottom: 8px; color: #333;">Account Type:</label>
+          <div style="display: flex; gap: 20px;">
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+              <input type="radio" name="role" value="customer" required>
+              Customer
+            </label>
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+              <input type="radio" name="role" value="seller" required>
+              Seller
+            </label>
+          </div>
+          <span class="error-message" id="role-error"></span>
         </div>
-        <button type="submit" class="btn-login">Sign Up</button>
+        <button type="submit" id="register-btn" class="btn-login">Sign Up</button>
       </form>
       <div class="signup-link">
         <p>Already have an account? <a href="/pages/login.html">Sign in</a></p>

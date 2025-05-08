@@ -1,38 +1,45 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Admin User",
-      "username": "admin",
       "password": "password",
+      "email": "admin@a.com",
       "role": "admin"
     },
     {
       "id": 2,
-      "name": "Admin User2",
-      "username": "admin2",
+      "name": "Ezz",
+      "email": "AbdelrhmanAbouelez.2020@azhar.edu.eg",
+      "password": "123456789",
+      "role": "customer"
+    },
+    {
+      "id": 3,
+      "name": "Ezz",
+      "email": "abouelez10@gmail.com",
       "password": "password",
-      "role": "admin"
+      "role": "seller"
     }
   ],
-  "products":[
+  "products": [
     {
-      "id": 1,
+      "id": "1",
       "price": 500,
       "image": "assets/products/p1.jpg",
       "category_id": 1,
       "is_approved": true
     }
   ],
-  "categories":[
+  "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "cat1"
     }
   ],
-  "orders":[
+  "orders": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "price": 1000
     }
