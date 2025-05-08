@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <title>All Products</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <!-- Top Banner -->
@@ -29,7 +31,10 @@
     <div class="icons flex align-center">
       <i class="far fa-heart"></i>
       <div class="cart-icon relative">
-        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-icon relative" onclick="window.location.href='product_cart.html#cart-container'" style="cursor: pointer;">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge">2</span>
+        </div>
         <span class="badge">2</span>
       </div>
       <div class="user-icon">

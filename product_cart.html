@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product & Cart Page</title>
+  <link rel="stylesheet" href="product_cart.css" />
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <!-- المنتج الأساسي -->
+    <div class="product-container">
+      <div class="product-image">
+        <img src="images/gamepad.jpg" alt="Havic Gamepad" class="main-image">
+      </div>
+
+      <div class="product-info">
+        <h1>Havic HV G-92 Gamepad</h1>
+        <div class="product-rating">
+          ★★★★☆ <span>(150 Reviews)</span> <span class="in-stock">In Stock</span>
+        </div>
+        <div class="product-price">$192.00</div>
+        <p class="product-description">
+          PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal. Pressure sensitive.
+        </p>
+
+        <div class="product-options">
+          <label>Colours:</label>
+          <button class="color red"></button>
+          <button class="color blue"></button>
+        </div>
+
+        <div class="product-options">
+          <label>Size:</label>
+          <button>XS</button>
+          <button>S</button>
+          <button class="selected">M</button>
+          <button>L</button>
+          <button>XL</button>
+        </div>
+
+        <div class="quantity-buy">
+          <button class="decrement">-</button>
+          <input type="text" value="2">
+          <button class="increment">+</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+
+        <div class="delivery-info">
+          <p><strong>Free Delivery</strong><br>Enter your postal code for delivery availability</p>
+          <p><strong>Return Delivery</strong><br>Free 30 Days Delivery Returns. <a href="#">Details</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- العناصر المرتبطة -->
+    <div class="related-items">
+      <h2>Related Items</h2>
+      <div class="related-items-container">
+        <div class="related-item">
+          <div class="discount">40% OFF</div>
+          <div class="image-box">[Image]</div>
+          <h3>HAVIT HV-G92 Gamepad</h3>
+          <button class="add-to-cart">Add To Cart</button>
+          <p class="price"><span class="new">$12.0</span> <span class="old">$20</span></p>
+          <p class="stars">★★★★☆ (88)</p>
+        </div>
+
+        <div class="related-item">
+          <div class="discount">20% OFF</div>
+          <div class="image-box">[Image]</div>
+          <h3>AK-900 Wired Keyboard</h3>
+          <button class="add-to-cart">Add To Cart</button>
+          <p class="price"><span class="new">$9.60</span> <span class="old">$12</span></p>
+          <p class="stars">★★★★☆ (75)</p>
+        </div>
+
+        <div class="related-item">
+          <div class="discount">30% OFF</div>
+          <div class="image-box">[Image]</div>
+          <h3>IPS LCD Gaming Monitor</h3>
+          <button class="add-to-cart">Add To Cart</button>
+          <p class="price"><span class="new">$379</span> <span class="old">$400</span></p>
+          <p class="stars">★★★★☆ (93)</p>
+        </div>
+
+        <div class="related-item">
+          <div class="image-box">[Image]</div>
+          <h3>RGB Liquid CPU Cooler</h3>
+          <button class="add-to-cart">Add To Cart</button>
+          <p class="price"><span class="new">$160</span> <span class="old">$170</span></p>
+          <p class="stars">★★★★☆ (65)</p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="margin: 50px 0;">
+
+    <!-- سلة التسوق -->
+    <div class="cart-container"  id="cart-container">
+      <h1>Shopping Cart</h1>
+
+      <div class="cart-items">
+        <div class="cart-header">
+          <div>Product</div>
+          <div>Price</div>
+          <div>Quantity</div>
+          <div>Total</div>
+        </div>
+
+        <div class="cart-item">
+          <div class="product-info">
+            <img src="https://via.placeholder.com/80" alt="Product">
+            <span>Product Name 1</span>
+          </div>
+          <div>$50.00</div>
+          <div><input type="number" min="1" value="1"></div>
+          <div>$50.00</div>
+        </div>
+
+        <div class="cart-item">
+          <div class="product-info">
+            <img src="https://via.placeholder.com/80" alt="Product">
+            <span>Product Name 2</span>
+          </div>
+          <div>$30.00</div>
+          <div><input type="number" min="1" value="2"></div>
+          <div>$60.00</div>
+        </div>
+      </div>
+
+      <button class="return-btn">Return to Shop</button>
+
+      <div class="cart-bottom">
+        <div class="coupon-area">
+          <input type="text" placeholder="Coupon Code">
+          <button class="apply-btn">Apply Coupon</button>
+        </div>
+
+        <div class="cart-total">
+          <h2>Cart Total</h2>
+          <div class="total-line">
+            <span>Subtotal:</span>
+            <span>$110.00</span>
+          </div>
+          <div class="total-line">
+            <span>Shipping:</span>
+            <span>$0.00</span>
+          </div>
+          <div class="total-line total">
+            <span>Total:</span>
+            <span>$110.00</span>
+          </div>
+          <a href="Checkout.html" class="checkout-btn">Proceed to Checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 40px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap: 40px; /* مسافة بين السكشنين */
+}
+
+.billing-details,
+.order-summary {
+    padding: 30px 40px;
+    flex: 1 1 400px;
+    min-width: 300px;
+}
+
+.billing-details {
+    border-right: 1px solid #ddd;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: normal;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #000;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+}
+
+.order-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-summary ul li {
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-summary .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.order-summary .item-name {
+    text-align: left;
+    flex: 1;
+}
+
+.order-summary .item-price {
+    text-align: right;
+    flex: 1;
+}
+
+/* العناصر Subtotal و Shipping كـ input */
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.summary-line input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: right;
+    font-size: 15px;
+    color: #000;
+    width: 120px;
+    background-color: #f9f9f9;
+}
+
+.summary-line span {
+    font-size: 15px;
+    color: #000;
+}
+
+.order-summary .total {
+    font-weight: bold;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.coupon {
+    display: flex;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.coupon input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.coupon button,
+.place-order button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff6a00;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.coupon button:hover,
+.place-order button:hover {
+    background-color: #ff4500;
+}
+
+.place-order {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .billing-details {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .coupon {
+        flex-direction: column;
+    }
+
+    .coupon input {
+        width: 100%;
+    }
+}
