@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - E-commerce Platform</title>
+  <link rel="stylesheet" href="/css/admin-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/js/components.js"></script>
+</head>
+<body>
+  <!-- Include header component -->
+  <div data-include="/components/header.html"></div>
+
+  <div class="admin-container">
+    <!-- Include sidebar component -->
+    <div data-include="/components/sidebar.html"></div>
+
+    <!-- Main content area -->
+    <main class="admin-content">
+      <div class="page-header">
+        <div class="page-title">
+          <i class="fas fa-tachometer-alt"></i>
+          <h2>Dashboard</h2>
+        </div>
+      </div>
+
+      <!-- Dashboard content -->
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Total Orders</h3>
+            <p>1,024</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-box"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Products</h3>
+            <p>856</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Customers</h3>
+            <p>3,291</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="stat-info">
+            <h3>Revenue</h3>
+            <p>$35,723</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-charts">
+        <div class="chart-container">
+          <h3>Monthly Sales</h3>
+          <div class="chart-placeholder">
+            <!-- Chart would be rendered here with a library like Chart.js -->
+            <p>Sales chart will be displayed here</p>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <h3>Popular Categories</h3>
+          <div class="chart-placeholder">
+            <!-- Chart would be rendered here with a library like Chart.js -->
+            <p>Categories chart will be displayed here</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>
+
+

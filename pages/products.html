@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/js/components.js"></script>
+</head>
+<body>
+  <!-- Include header component -->
+  <div data-include="/components/header.html"></div>
+
+  <div class="admin-container">
+    <!-- Include sidebar component -->
+    <div data-include="/components/sidebar.html"></div>
+
+    <!-- Main content area -->
+    <main class="admin-content">
+      <div class="page-header">
+        <div class="page-title">
+          <i class="fas fa-box"></i>
+          <h2>Products</h2>
+        </div>
+        <button class="btn-add" onclick="window.location.href='/pages/admin/add-product.html'">
+          <i class="fas fa-plus"></i>
+          Add
+        </button>
+      </div>
+
+      <div class="content-card">
+        <div class="table-toolbar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search">
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Seller</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-product-id="1">
+                <td>Iphone 16</td>
+                <td>$100,000</td>
+                <td>Electronics</td>
+                <td>Seller User</td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-approve">
+                      <i class="fas fa-check"></i> Approve
+                    </button>
+                    <button class="btn-reject">
+                      <i class="fas fa-times"></i> Reject
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-product-id="2">
+                <td>MacBook Pro</td>
+                <td>$2,499</td>
+                <td>Electronics</td>
+                <td>Seller User</td>
+                <td><span class="status-badge approved">Approved</span></td>
+                <td>
+                  <div class="action-dropdown">
+                    <button class="btn-action">Actions <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-menu">
+                      <button class="dropdown-item edit-product">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="dropdown-item delete-product">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr data-product-id="3">
+                <td>Samsung Galaxy S23</td>
+                <td>$999</td>
+                <td>Electronics</td>
+                <td>Seller User</td>
+                <td><span class="status-badge pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-approve">
+                      <i class="fas fa-check"></i> Approve
+                    </button>
+                    <button class="btn-reject">
+                      <i class="fas fa-times"></i> Reject
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-product-id="4">
+                <td>Sony PlayStation 5</td>
+                <td>$499</td>
+                <td>Gaming</td>
+                <td>Seller User</td>
+                <td><span class="status-badge rejected">Rejected</span></td>
+                <td>
+                  <div class="action-dropdown">
+                    <button class="btn-action">Actions <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-menu">
+                      <button class="dropdown-item edit-product">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="dropdown-item delete-product">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination">
+          <div class="per-page">
+            <span>10</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="page-controls">
+            <button class="btn-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="btn-page active">1</button>
+            <button class="btn-next"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/admin.js"></script>
+  <script src="/js/products.js"></script>
+</body>
+</html>
+
