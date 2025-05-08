@@ -62,8 +62,7 @@ export default class Validator {
                             break;
                         }
                     } catch (error) {
-                        console.error('Validation error:', error);
-                        errors[field] = `Error validating ${field}.`;
+                        alert.error('Error while Validation:', error);
                         break;
                     }
                 }
