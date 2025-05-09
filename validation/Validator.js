@@ -47,6 +47,21 @@ export default class Validator {
                     }
                 }
                 
+                if (ruleName === 'noNumbers') {
+                    const hasNumbers = /\d/.test(val);
+                    if (hasNumbers) {
+                        errors[field] = `${field} cannot contain numbers.`;
+                        break;
+                    }
+                }
+                
+                if (ruleName === 'noDigitsOnly') {
+                    if (typeof val === 'string' && /^\d+$/.test(val)) {
+                        errors[field] = `${field} cannot contain only digits.`;
+                        break;
+                    }
+                }
+                
                 if (ruleName === 'unique') {
                     // Format: unique:ModelClass,field,id
                     const [modelClass, fieldName, id] = param.split(',');

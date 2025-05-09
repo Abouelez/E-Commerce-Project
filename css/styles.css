@@ -48,14 +48,14 @@ button:hover {
   display: flex;
   height: 100vh;
   background-color: #ffffff;
-  background-image: url(/assets/imgs/bg10.jpeg) ;
+  background-image: url(/assets/bg10.jpeg) ;
   background-size: cover ;
   background-repeat: no-repeat ;
 }
 
 .login-image {
   flex: 1;
-  background-image: url('/assets/imgs/login2.svg');
+  background-image: url('/assets/login2.svg');
   background-size: 60%;
   background-position: center;
   background-repeat: no-repeat;
@@ -63,14 +63,14 @@ button:hover {
 
 .login-image2 {
   flex: 1;
-  background-image: url('/assets/imgs/signup.svg');
+  background-image: url('/assets/signup.svg');
   background-size: 60%;
   background-position: center;
   background-repeat: no-repeat;
 }
 .login-image3 {
   flex: 1;
-  background-image: url('/assets/imgs/Reset\ password-rafiki.svg');
+  background-image: url('/assets/Reset\ password-rafiki.svg');
   background-size: 60%;
   background-position: center;
   background-repeat: no-repeat;
@@ -216,20 +216,4 @@ button:hover {
 
 .btn-login {
   flex: 1;
-}
-
-.error-message {
-    color: #dc3545;
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-}
-
-.form-group input.error {
-    border-color: #dc3545;
-}
-
-.form-group input.error:focus {
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }

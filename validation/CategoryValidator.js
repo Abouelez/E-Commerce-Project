@@ -2,8 +2,7 @@ import Validator from './Validator.js';
 
 export default class CategoryValidator extends Validator {
     static rules = {
-        name: 'required|minLength:2|maxLength:50|unique:Category,name',
-        description: 'maxLength:200'
+        name: 'required|minLength:2|maxLength:50|unique:Category,name|noDigitsOnly'
     };
 
     static async validate(data, id = null) {
