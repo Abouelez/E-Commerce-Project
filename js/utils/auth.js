@@ -74,19 +74,19 @@ export const auth = {
     redirectToDashboard: () => {
         const user = auth.getCurrentUser();
         if (!user) return;
-
-        switch (user.role) {
-            case 'admin':
-                window.location.href = '../../pages/dashboard.html';
-                break;
-            case 'seller':
-                window.location.href = '/pages/seller/dashboard.html';
-                break;
-            case 'customer':
-                window.location.href = '/pages/customer/dashboard.html';
-                break;
-            default:
-                window.location.href = '/';
-        }
+        window.location.href = '../../pages/index.html';
+        // switch (user.role) {
+        //     case 'admin':
+        //         window.location.href = '../../pages/dashboard.html';
+        //         break;
+        //     case 'seller':
+        //         window.location.href = '/pages/seller/dashboard.html';
+        //         break;
+        //     case 'customer':
+        //         window.location.href = '/pages/customer/dashboard.html';
+        //         break;
+        //     default:
+        //         window.location.href = '/';
+        // }
     }
 }; 

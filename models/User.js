@@ -16,4 +16,26 @@ export default class User extends Model {
             return [];
         }
     }
+
+    static async addToCart(userId, productId, cnt, update = false) {
+        const user = await User.get(userId);
+        let product = user.cart.find(item => item.product_id == productId);
+        // if (user.cart.length > 0) {
+        //    product  = user.cart.find(item => item.product_id == productId);
+        // }
+        if (product) {
+            if (update) product.count = cnt;
+            else product.count += cnt;
+        } else {
+            user.cart.push({ product_id: productId, count: cnt });
+        }
+
+        return User.update(userId, user);
+    }
+
+    static async removeFromCart(userId, productId) {
+        const user = await this.get(userId);
+        user.cart = user.cart.filter(item => item.product_id !== productId);
+        return User.update(userId, user);
+    }
 }

@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
             name: name,
             email: email,
             password: password,
-            role: roleInput ? roleInput.value : null
+            role: roleInput ? roleInput.value : null,
+            cart: []
         };
 
         // Validate required fields

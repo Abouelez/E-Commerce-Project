@@ -163,11 +163,18 @@ img {
 }
 
 .category-card {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;  
+  justify-content: center; 
   text-align: center;
+  height: 10rem;
   padding: 0.9375rem;
   border: 0.0625rem solid #eee;
   border-radius: 0.5rem;
   background: #fff;
+  cursor: pointer;
 }
 .category-card img{
     height: 90%;
@@ -435,4 +442,25 @@ img {
 .product-card p {
   font-size: 1rem;
   color: #777;
+}
+.user-menu .dropdown {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  top: 100%;
+  right: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.user-menu .dropdown a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+}
+.user-menu .dropdown a:hover {
+  background-color: #f2f2f2;
+}
+.hidden {
+  display: none;
 }
