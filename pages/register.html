@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - E-commerce Platform</title>
   <link rel="stylesheet" href="/css/styles.css">
-  <script type="module" src="/js/registerAction.js"></script>
 </head>
 <body>
   <div class="login-container">
@@ -14,37 +13,23 @@
     </div>
     <div class="login-form-container">
       <div class="login-logo">
-        <img src="/assets/imgs/2591708.png" alt="Logo">
+        <img src="/assets/2591708.png" alt="Logo">
         <h2>Create Account</h2>
       </div>
-      <form id="register-form" method="post">
+      <form id="register-form">
         <div class="form-group">
-          <input type="text" id="name" placeholder="Full Name">
-          <span class="error-message" id="name-error"></span>
+          <input type="text" id="name" placeholder="Full Name" required>
         </div>
         <div class="form-group">
-          <input type="email" id="email" placeholder="Email">
-          <span class="error-message" id="email-error"></span>
+          <input type="email" id="email" placeholder="Email" required>
         </div>
         <div class="form-group">
-          <input type="password" id="password" placeholder="Password">
-          <span class="error-message" id="password-error"></span>
+          <input type="password" id="password" placeholder="Password" required>
         </div>
         <div class="form-group">
-          <label style="display: block; margin-bottom: 8px; color: #333;">Account Type:</label>
-          <div style="display: flex; gap: 20px;">
-            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
-              <input type="radio" name="role" id="role" value="customer">
-              Customer
-            </label>
-            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
-              <input type="radio" name="role" value="seller"  >
-              Seller
-            </label>
-          </div>
-          <span class="error-message" id="role-error"></span>
+          <input type="password" id="confirm-password" placeholder="Confirm Password" required>
         </div>
-        <button type="submit" id="register-btn" class="btn-login">Sign Up</button>
+        <button type="submit" class="btn-login">Sign Up</button>
       </form>
       <div class="signup-link">
         <p>Already have an account? <a href="/pages/login.html">Sign in</a></p>

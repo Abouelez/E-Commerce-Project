@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product - Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/js/include-components.js"></script>
+</head>
+<body>
+  <!-- Include header component -->
+  <div data-include="/components/header.html"></div>
+
+  <div class="admin-container">
+    <!-- Include sidebar component -->
+    <div data-include="/components/sidebar.html"></div>
+
+    <!-- Main content area -->
+    <main class="admin-content">
+      <div class="page-header">
+        <div class="page-title">
+          <h2>Add Product</h2>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="add-product-form">
+          <div class="product-image-upload">
+            <div class="image-preview">
+              <img id="product-image-preview" src="/assets//products/image-placeholder.jpg" alt="Product Image">
+              <button class="edit-image-btn"><i class="fas fa-edit"></i></button>
+            </div>
+            <input type="file" id="product-image" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+            <p class="image-hint">Allowed file types: png, jpg, jpeg and cannot be more than 2 MB</p>
+          </div>
+
+          <div class="form-content">
+            <!-- input conatiner -->
+          <div class="input-container">
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="product-name">Name</label>
+                <input type="text" id="product-name" placeholder="Enter product name">
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group">
+                <label for="product-price">Price</label>
+                <input type="number" id="product-price" placeholder="Enter price" min="0" step="0.01">
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group">
+                <label for="product-category">Category</label>
+                <div class="select-wrapper">
+                  <select id="product-category">
+                    <option value="" disabled selected>Select category</option>
+                    <!-- Categories will be loaded dynamically from db.json -->
+                  </select>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="product-seller">Seller</label>
+                <div class="select-wrapper">
+                  <select id="product-seller">
+                    <option value="" disabled selected>Select seller</option>
+                    <!-- Sellers will be loaded dynamically from db.json -->
+                  </select>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of input container -->
+
+          <!-- start of discription box -->
+          <div class="Discription-box">
+            <div class="form-group full-width">
+              <label>Description</label>
+              <div class="rich-text-editor">
+                <div class="editor-toolbar">
+                  <div class="toolbar-group">
+                    <button class="toolbar-btn"><i class="fas fa-undo"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-redo"></i></button>
+                  </div>
+                  <div class="toolbar-group">
+                    <button class="toolbar-btn active"><i class="fas fa-bold"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-italic"></i></button>
+                  </div>
+                  <div class="toolbar-group">
+                    <button class="toolbar-btn"><i class="fas fa-list-ul"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-list-ol"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-indent"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-outdent"></i></button>
+                  </div>
+                  <div class="toolbar-group">
+                    <button class="toolbar-btn"><i class="fas fa-align-left"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-align-center"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-align-right"></i></button>
+                    <button class="toolbar-btn"><i class="fas fa-align-justify"></i></button>
+                  </div>
+                </div>
+                <div class="editor-content" contenteditable="true" id="product-description"></div>
+              </div>
+            </div>
+          </div>
+          <!-- end of discription box -->
+          </div>
+          <div class="form-actions">
+            <button class="btn-cancel">Cancel</button>
+            <button class="btn-save">Save</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import ProductValidator from '/validation/ProductValidator.js';
+
+    document.addEventListener('DOMContentLoaded', async function() {
+      // Load categories from db.json
+      try {
+        const response = await fetch('http://localhost:3000/categories');
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        
+        const categories = await response.json();
+        const categorySelect = document.getElementById('product-category');
+        
+        // Clear any existing options except the first one
+        while (categorySelect.options.length > 1) {
+          categorySelect.remove(1);
+        }
+        
+        // Add categories from db.json
+        categories.forEach(category => {
+          if (category.status === 'available') {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            categorySelect.appendChild(option);
+          }
+        });
+      } catch (error) {
+        console.error('Error loading categories:', error);
+      }
+      
+      // Load sellers from db.json (users with role "seller")
+      try {
+        const response = await fetch('http://localhost:3000/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        
+        const users = await response.json();
+        const sellerSelect = document.getElementById('product-seller');
+        
+        // Clear any existing options except the first one
+        while (sellerSelect.options.length > 1) {
+          sellerSelect.remove(1);
+        }
+        
+        // Add sellers from db.json
+        users.forEach(user => {
+          if (user.role === 'seller' && (!user.status || user.status === 'available')) {
+            const option = document.createElement('option');
+            option.value = user.id;
+            option.textContent = user.name;
+            sellerSelect.appendChild(option);
+          }
+        });
+      } catch (error) {
+        console.error('Error loading sellers:', error);
+      }
+      
+      // Create error message elements
+      const formGroups = document.querySelectorAll('.form-group');
+      formGroups.forEach(group => {
+        const input = group.querySelector('input, select, [contenteditable]');
+        if (input) {
+          const errorElement = document.createElement('div');
+          errorElement.className = 'error-message';
+          errorElement.id = `${input.id}-error`;
+          group.appendChild(errorElement);
+        }
+      });
+      
+      // Add error message element for image
+      const imageUpload = document.querySelector('.product-image-upload');
+      const imageErrorElement = document.createElement('div');
+      imageErrorElement.className = 'error-message';
+      imageErrorElement.id = 'product-image-error';
+      imageUpload.appendChild(imageErrorElement);
+      
+      // Image upload preview
+      const imageInput = document.getElementById('product-image');
+      const imagePreview = document.getElementById('product-image-preview');
+      const editImageBtn = document.querySelector('.edit-image-btn');
+      
+      editImageBtn.addEventListener('click', function() {
+        imageInput.click();
+      });
+      
+      imageInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const file = this.files[0];
+          
+          // Check file size (max 2MB)
+          if (file.size > 2 * 1024 * 1024) {
+            document.getElementById('product-image-error').textContent = 'Image size must be less than 2MB';
+            return;
+          }
+          
+          // Check file type
+          const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+          if (!validTypes.includes(file.type)) {
+            document.getElementById('product-image-error').textContent = 'Only JPG, JPEG, and PNG files are allowed';
+            return;
+          }
+          
+          // Clear any previous error
+          document.getElementById('product-image-error').textContent = '';
+          
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+          };
+          
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+      
+      // Form submission
+      const saveBtn = document.querySelector('.btn-save');
+      const cancelBtn = document.querySelector('.btn-cancel');
+
+      saveBtn.addEventListener('click', async function() {
+        // Clear all previous error messages
+        document.querySelectorAll('.error-message').forEach(el => {
+          el.textContent = '';
+        });
+        
+        const name = document.getElementById('product-name').value;
+        const price = document.getElementById('product-price').value;
+        const categoryId = document.getElementById('product-category').value;
+        const seller = document.getElementById('product-seller').value;
+        const description = document.getElementById('product-description').innerHTML;
+        const imageFile = document.getElementById('product-image').files[0];
+        
+        // Create product data object for validation
+        const productData = {
+          name: name,
+          price: parseFloat(price) || 0,
+          description: description,
+          image: imageFile ? 'valid-image' : '' // Just for validation
+        };
+        
+        // Validate using ProductValidator
+        const validationErrors = await ProductValidator.validate(productData);
+        
+        // Check for required fields not covered by ProductValidator
+        if (!imageFile) {
+          document.getElementById('product-image-error').textContent = 'Product image is required';
+        }
+        
+        if (!categoryId) {
+          document.getElementById('product-category-error').textContent = 'Category is required';
+        }
+        
+        if (!seller) {
+          document.getElementById('product-seller-error').textContent = 'Seller is required';
+        }
+        
+        // If validation fails, show error messages and return
+        if (validationErrors || !imageFile || !categoryId || !seller) {
+          if (validationErrors) {
+            if (validationErrors.name) {
+              document.getElementById('product-name-error').textContent = validationErrors.name;
+            }
+            if (validationErrors.price) {
+              document.getElementById('product-price-error').textContent = validationErrors.price;
+            }
+            if (validationErrors.description) {
+              document.getElementById('product-description-error').textContent = validationErrors.description;
+            }
+            if (validationErrors.image) {
+              document.getElementById('product-image-error').textContent = validationErrors.image;
+            }
+          }
+          return;
+        }
+        
+        // Use the exact same image path format as in your original code
+        const imagePath = `/assets/products/${imageFile.name}`;
+        
+        // Get category name from selected option
+        const categorySelect = document.getElementById('product-category');
+        const categoryName = categorySelect.options[categorySelect.selectedIndex].text;
+        
+        // Get the next available ID
+        const productsResponse = await fetch('http://localhost:3000/products');
+        const products = await productsResponse.json();
+        const maxId = products.length > 0 ? Math.max(...products.map(p => parseInt(p.id))) : 0;
+        const nextId = (maxId + 1).toString();
+        
+        // Create product object - keeping your original structure
+        const product = {
+          id: nextId,
+          sellerId: seller,
+          name: name,
+          price: parseFloat(price),
+          categoryId: categoryId,
+          category: categoryName,
+          description: description,
+          image: imagePath,
+          status: "pending",
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+        
+        // Send to server
+        try {
+          const response = await fetch('http://localhost:3000/products', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product)
+          });
+          
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          
+          // Redirect to products page
+          window.location.href = '/pages/admin/products.html';
+        } catch (error) {
+          console.error('Error adding product:', error);
+          alert('Error adding product. Please try again.');
+        }
+      });
+      
+      cancelBtn.addEventListener('click', function() {
+        // Go back to products page
+        window.location.href = '/pages/admin/products.html';
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

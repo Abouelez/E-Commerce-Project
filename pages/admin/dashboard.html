@@ -6,7 +6,7 @@
   <title>Admin Dashboard - E-commerce Platform</title>
   <link rel="stylesheet" href="/css/admin-styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="/js/components.js"></script>
+  <script src="/js/include-components.js"></script>
 </head>
 <body>
   <!-- Include header component -->
@@ -33,7 +33,7 @@
           </div>
           <div class="stat-info">
             <h3>Total Orders</h3>
-            <p>1,024</p>
+            <p>Loading...</p>
           </div>
         </div>
         <div class="stat-card">
@@ -42,7 +42,7 @@
           </div>
           <div class="stat-info">
             <h3>Products</h3>
-            <p>856</p>
+            <p>Loading...</p>
           </div>
         </div>
         <div class="stat-card">
@@ -51,7 +51,7 @@
           </div>
           <div class="stat-info">
             <h3>Customers</h3>
-            <p>3,291</p>
+            <p>Loading...</p>
           </div>
         </div>
         <div class="stat-card">
@@ -60,7 +60,7 @@
           </div>
           <div class="stat-info">
             <h3>Revenue</h3>
-            <p>$35,723</p>
+            <p>Loading...</p>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
           <h3>Monthly Sales</h3>
           <div class="chart-placeholder">
             <!-- Chart would be rendered here with a library like Chart.js -->
-            <p>Sales chart will be displayed here</p>
+            <p>Loading sales chart...</p>
           </div>
         </div>
         
@@ -78,14 +78,36 @@
           <h3>Popular Categories</h3>
           <div class="chart-placeholder">
             <!-- Chart would be rendered here with a library like Chart.js -->
-            <p>Categories chart will be displayed here</p>
+            <p>Loading categories chart...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-widgets">
+        <div class="widget">
+          <div class="widget-header">
+            <h3>Recent Orders</h3>
+            <a href="/pages/admin/orders.html" class="view-all">View All</a>
+          </div>
+          <div class="widget-content" id="recent-orders">
+            <p class="loading">Loading recent orders...</p>
+          </div>
+        </div>
+        
+        <div class="widget">
+          <div class="widget-header">
+            <h3>Popular Products</h3>
+            <a href="/pages/admin/products.html" class="view-all">View All</a>
+          </div>
+          <div class="widget-content" id="popular-products">
+            <p class="loading">Loading popular products...</p>
           </div>
         </div>
       </div>
     </main>
   </div>
 
-  <script src="/js/admin.js"></script>
+  <script src="/js/dashboard.js"></script>
 </body>
 </html>
 

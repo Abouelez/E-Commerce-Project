@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/js/include-components.js"></script>
+</head>
+<body>
+  <!-- Include header component -->
+  <div data-include="/components/header.html"></div>
+
+  <div class="admin-container">
+    <!-- Include sidebar component -->
+    <div data-include="/components/sidebar.html"></div>
+
+    <!-- Main content area -->
+    <main class="admin-content">
+      <div class="page-header">
+        <div class="page-title">
+          <i class="fas fa-tags"></i>
+          <h2>Categories</h2>
+        </div>
+        <button class="btn-add btn-add-category">
+          <i class="fas fa-plus"></i>
+          Add
+        </button>
+      </div>
+
+      <div class="content-card">
+        <div class="table-toolbar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search categories...">
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Created On</th>
+                <th>Last Updated On</th>
+                <th style="text-align: center; padding-left: 0px;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Table rows will be populated dynamically from db.json -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/admin.js"></script>
+  <script type="module" src="/js/categories.js"></script>
+</body>
+</html>
+

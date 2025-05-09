@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details - Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/js/include-components.js"></script>
+</head>
+<body>
+  <!-- Include header component -->
+  <div data-include="/components/header.html"></div>
+
+  <div class="admin-container">
+    <!-- Include sidebar component -->
+    <div data-include="/components/sidebar.html"></div>
+
+    <!-- Main content area -->
+    <main class="admin-content">
+      <div class="page-header">
+        <div class="page-title">
+          <i class="fas fa-file-invoice"></i>
+          <h2>Order Details - <span id="order-id"></span></h2>
+        </div>
+        <div class="page-actions">
+          <button class="btn-back" onclick="window.location.href='/pages/admin/orders.html'">
+            <i class="fas fa-arrow-left"></i> Back to Orders
+          </button>
+          <button class="btn-update-status" id="update-status-btn">
+            <i class="fas fa-edit"></i> Update Status
+          </button>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="order-details-container">
+          <div class="order-info-section">
+            <div class="order-info-column">
+              <h4>Customer Information</h4>
+              <p><strong>Name:</strong> <span id="customer-name"></span></p>
+              <p><strong>Email:</strong> <span id="customer-email"></span></p>
+              <p><strong>Phone:</strong> <span id="customer-phone"></span></p>
+            </div>
+            <div class="order-info-column">
+              <h4>Order Information</h4>
+              <p><strong>Order ID:</strong> <span id="order-number"></span></p>
+              <p><strong>Date:</strong> <span id="order-date"></span></p>
+              <p><strong>Status:</strong> <span id="order-status" class="status-badge"></span></p>
+              <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
+            </div>
+            <div class="order-info-column">
+              <h4>Shipping Address</h4>
+              <p id="shipping-street"></p>
+              <p id="shipping-city-state"></p>
+              <p id="shipping-country"></p>
+            </div>
+          </div>
+          
+          <div class="order-items-section">
+            <h4>Order Items</h4>
+            <table class="data-table order-items-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody id="order-items">
+                <!-- Items will be inserted here dynamically -->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3" class="text-right"><strong>Subtotal:</strong></td>
+                  <td id="order-subtotal"></td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="text-right"><strong>Shipping:</strong></td>
+                  <td id="order-shipping"></td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="text-right"><strong>Tax:</strong></td>
+                  <td id="order-tax"></td>
+                </tr>
+                <tr class="total-row">
+                  <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                  <td id="order-total"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/js/order-details.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/js/include-components.js"></script>
+</head>
+<body>
+  <!-- Include header component -->
+  <div data-include="/components/header.html"></div>
+
+  <div class="admin-container">
+    <!-- Include sidebar component -->
+    <div data-include="/components/sidebar.html"></div>
+
+    <!-- Main content area -->
+    <main class="admin-content">
+      <div class="page-header">
+        <div class="page-title">
+          <i class="fas fa-box"></i>
+          <h2>Products</h2>
+        </div>
+        <button class="btn-add" onclick="window.location.href='/pages/admin/add-product.html'">
+          <i class="fas fa-plus"></i>
+          Add
+        </button>
+      </div>
+
+      <div class="content-card">
+        <div class="table-toolbar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search" id="product-search">
+          </div>
+          <div class="filter-box">
+            <select id="status-filter">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="filter-box">
+            <select id="category-filter">
+              <option value="all">All Categories</option>
+              <!-- Categories will be loaded dynamically -->
+            </select>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Seller</th>
+                <th>Status</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Products will be loaded dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Confirmation Dialog -->
+  <div class="confirmation-dialog" id="confirmation-dialog" style="display: none;">
+    <div class="dialog-content">
+      <p id="confirmation-message">Are you sure you want to perform this action?</p>
+      <div class="dialog-buttons">
+        <button id="confirm-yes" class="btn-confirm">Yes</button>
+        <button id="confirm-no" class="btn-cancel">No</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/products.js"></script>
+</body>
+</html>
+
+
