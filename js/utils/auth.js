@@ -72,9 +72,9 @@ export const auth = {
      * Redirect to appropriate dashboard based on user role
      */
     redirectToDashboard: () => {
-        const user = auth.getCurrentUser();
+        const user = auth.getCurrentUser(); 
         if (!user) return;
-        window.location.href = '../../pages/index.html';
+        window.location.href = '/E-Commerce-Project/index.html';
         // switch (user.role) {
         //     case 'admin':
         //         window.location.href = '../../pages/dashboard.html';

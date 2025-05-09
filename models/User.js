@@ -19,10 +19,10 @@ export default class User extends Model {
 
     static async addToCart(userId, productId, cnt, update = false) {
         const user = await User.get(userId);
-        let product = user.cart.find(item => item.product_id == productId);
-        // if (user.cart.length > 0) {
-        //    product  = user.cart.find(item => item.product_id == productId);
-        // }
+        let product = null;
+        if (user.cart.length > 0) {
+           product  = user.cart.find(item => item.product_id == productId);
+        }
         if (product) {
             if (update) product.count = cnt;
             else product.count += cnt;

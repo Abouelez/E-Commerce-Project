@@ -96,6 +96,6 @@ window.addEventListener('load', function () {
     })
 
     this.document.getElementById('cart-icon').addEventListener('click', function () {
-        window.location.href = './cart.html';
+        window.location.href = 'pages/cart.html';
     })
 });

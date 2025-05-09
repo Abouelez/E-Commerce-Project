@@ -40,7 +40,7 @@ export default function loadHeader() {
              <a href="#" id="logout-btn">Logout</a>
            </div>
          </div>`
-      : `<a href="login.html" class="login-btn">Login</a>`;  // Show Login button for non-logged-in users
+      : `<a href="pages/login.html" class="login-btn">Login</a>`;  // Show Login button for non-logged-in users
   
     // FINAL HEADER HTML
     header.innerHTML = `
