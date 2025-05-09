@@ -2,117 +2,378 @@
   "users": [
     {
       "id": "1",
+      "role": "admin",
       "name": "Admin User",
-      "password": "password",
-      "email": "admin@a.com",
-      "role": "admin"
+      "email": "admin@example.com",
+      "password": "123456",
+      "createdAt": "2023-01-10T12:00:00Z",
+      "updatedAt": "2025-05-09T08:17:07.630Z"
     },
     {
-      "id": 2,
-      "name": "Ezz",
-      "email": "AbdelrhmanAbouelez.2020@azhar.edu.eg",
-      "password": "123456789",
-      "role": "customer"
+      "id": "3",
+      "name": "ali mo",
+      "email": "Ali686@gmail.com",
+      "password": "1234567",
+      "role": "seller",
+      "status": "available",
+      "createdAt": "2025-05-09T09:02:16.224Z",
+      "updatedAt": "2025-05-09T09:21:54.432Z"
     },
     {
-      "id": 3,
-      "name": "Ezz",
-      "email": "abouelez10@gmail.com",
-      "password": "password",
-      "role": "seller"
+      "id": "5",
+      "name": "Ahmed",
+      "email": "Ahmed4534@gmail.com",
+      "password": "00000000",
+      "role": "seller",
+      "status": "available",
+      "createdAt": "2025-05-09T09:35:44.412Z",
+      "updatedAt": "2025-05-09T09:51:18.447Z"
     },
     {
-      "id": 4,
-      "name": "new test",
-      "email": "test@test.com",
-      "password": "testtesttest",
-      "role": "seller"
+      "id": "6",
+      "name": "Abdo",
+      "email": "abdo@gmail.com",
+      "password": "43646346",
+      "role": "seller",
+      "status": "available",
+      "createdAt": "2025-05-09T09:46:32.175Z",
+      "updatedAt": "2025-05-09T09:46:32.175Z"
+    },
+    {
+      "id": "7",
+      "name": "Sally ahmed",
+      "email": "Sallyahmed@gmail.com",
+      "password": "016233",
+      "role": "customer",
+      "phone": "01234567890",
+      "status": "available",
+      "createdAt": "2025-05-09T14:18:24.227Z",
+      "updatedAt": "2025-05-09T14:18:24.227Z"
+    },
+    {
+      "id": "8",
+      "name": "Mohamed Ali",
+      "email": "mohamed@example.com",
+      "password": "123456",
+      "role": "customer",
+      "phone": "01098765432",
+      "status": "available",
+      "createdAt": "2025-05-10T10:30:00.000Z",
+      "updatedAt": "2025-05-10T10:30:00.000Z"
+    },
+    {
+      "id": "9",
+      "name": "Fatima Hassan",
+      "email": "fatima@example.com",
+      "password": "123456",
+      "role": "customer",
+      "phone": "01112345678",
+      "status": "available",
+      "createdAt": "2025-05-10T11:15:00.000Z",
+      "updatedAt": "2025-05-10T11:15:00.000Z"
     }
   ],
   "products": [
     {
       "id": "1",
-      "price": 500,
-      "image": "assets/products/p1.jpg",
-      "category_id": 1,
-      "is_approved": true
+      "sellerId": "5",
+      "name": "iPhone 1",
+      "price": 1299.99,
+      "categoryId": "1",
+      "category": "Electronics",
+      "description": "The latest iPhone with advanced features and improved camera.",
+      "image": "/assets/products/iphone.jpg",
+      "status": "approved",
+      "createdAt": "2025-05-09T08:30:00.000Z",
+      "updatedAt": "2025-05-09T11:42:07.363Z"
+    },
+    {
+      "id": "2",
+      "sellerId": "5",
+      "name": "MacBook Pro M3",
+      "price": 1999.99,
+      "categoryId": "1",
+      "category": "Electronics",
+      "description": "Powerful laptop with the latest M3 chip.",
+      "image": "/assets/products/macbook.jpg",
+      "status": "approved",
+      "createdAt": "2025-05-09T09:15:00.000Z",
+      "updatedAt": "2025-05-09T09:15:00.000Z"
+    },
+    {
+      "id": "3",
+      "sellerId": "6",
+      "name": "Gaming Chair",
+      "price": 299.99,
+      "categoryId": "5",
+      "category": "Gaming",
+      "description": "Ergonomic gaming chair with lumbar support.",
+      "image": "/assets/products/chair.jpg",
+      "status": "approved",
+      "createdAt": "2025-05-09T10:20:00.000Z",
+      "updatedAt": "2025-05-09T11:39:27.527Z",
+      "approvedAt": "2025-05-09T11:39:27.527Z"
+    },
+    {
+      "id": "4",
+      "sellerId": "3",
+      "name": "Wireless Earbuds",
+      "price": 149.99,
+      "categoryId": "1",
+      "category": "Electronics",
+      "description": "High-quality wireless earbuds with noise cancellation.",
+      "image": "/assets/products/earbuds.jpg",
+      "status": "approved",
+      "createdAt": "2025-05-09T11:45:00.000Z",
+      "updatedAt": "2025-05-09T11:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "sellerId": "5",
+      "name": "Smart Watch",
+      "price": 249.99,
+      "categoryId": "1",
+      "category": "Electronics",
+      "description": "Feature-rich smartwatch with health monitoring.",
+      "image": "/assets/products/watch.jpg",
+      "status": "rejected",
+      "createdAt": "2025-05-09T12:30:00.000Z",
+      "updatedAt": "2025-05-09T12:30:00.000Z"
+    },
+    {
+      "id": "7",
+      "sellerId": "6",
+      "name": "Book2",
+      "price": 12.07,
+      "categoryId": "3",
+      "category": "Books",
+      "description": "asfasfasf",
+      "image": "/assets/products/image-placeholder.jpg",
+      "status": "pending",
+      "createdAt": "2025-05-09T11:43:37.236Z",
+      "updatedAt": "2025-05-09T11:43:37.236Z"
+    },
+    {
+      "id": "8",
+      "sellerId": "3",
+      "name": "Book1",
+      "price": 12.04,
+      "categoryId": "3",
+      "category": "Books",
+      "description": "ffwefew",
+      "image": "/assets/products/image-placeholder.jpg",
+      "status": "approved",
+      "createdAt": "2025-05-09T11:51:55.104Z",
+      "updatedAt": "2025-05-09T11:56:24.387Z",
+      "approvedAt": "2025-05-09T11:56:24.387Z"
+    },
+    {
+      "id": "9",
+      "sellerId": "5",
+      "name": "Book3",
+      "price": 12.04,
+      "categoryId": "5",
+      "category": "Gaming",
+      "description": "wefwf",
+      "image": "/assets/products/image-placeholder.jpg",
+      "status": "pending",
+      "createdAt": "2025-05-09T12:14:59.561Z",
+      "updatedAt": "2025-05-09T12:14:59.561Z"
+    },
+    {
+      "id": "10",
+      "sellerId": "3",
+      "name": "dell 5450",
+      "price": 199.93,
+      "categoryId": "1",
+      "category": "Electronics",
+      "description": "affasf",
+      "image": "/assets/products/bg3.jpg",
+      "status": "pending",
+      "createdAt": "2025-05-09T12:28:24.707Z",
+      "updatedAt": "2025-05-09T12:28:24.707Z"
+    },
+    {
+      "id": "11",
+      "sellerId": "6",
+      "name": "Test",
+      "price": 32.05,
+      "categoryId": "2",
+      "category": "Clothing",
+      "description": "dfsdsds",
+      "image": "/assets/products/bg10-dark.jpeg",
+      "status": "approved",
+      "createdAt": "2025-05-09T13:01:37.657Z",
+      "updatedAt": "2025-05-09T13:02:04.752Z",
+      "approvedAt": "2025-05-09T13:02:04.752Z"
     }
   ],
   "categories": [
     {
       "id": "1",
-      "name": "cat1"
+      "name": "Electronic",
+      "status": "available",
+      "createdAt": "2023-01-10T12:00:00Z",
+      "updatedAt": "2025-05-09T15:27:18.615Z"
     },
     {
       "id": "2",
-      "name": "cat2"
+      "name": "Clothing",
+      "status": "available",
+      "createdAt": "2023-01-12T09:15:00Z",
+      "updatedAt": "2023-01-12T09:15:00Z"
     },
     {
       "id": "3",
-      "name": "cat3"
-    },
-    {
-      "id": "4",
-      "name": "cat4"
+      "name": "Books",
+      "status": "available",
+      "createdAt": "2023-01-15T11:20:00Z",
+      "updatedAt": "2023-01-20T16:45:00Z"
     },
     {
       "id": "5",
-      "name": "cat5"
+      "name": "Gaming",
+      "status": "available",
+      "createdAt": "2023-01-20T13:10:00Z",
+      "updatedAt": "2023-01-25T09:20:00Z"
     },
     {
       "id": "6",
-      "name": "cat6"
+      "name": "Home",
+      "status": "available",
+      "createdAt": "2025-05-09T06:38:03.775Z",
+      "updatedAt": "2025-05-09T06:38:03.775Z"
     },
     {
       "id": "7",
-      "name": "cat7"
-    },
-    {
-      "id": "8",
-      "name": "cat8"
-    },
-    {
-      "id": "9",
-      "name": "cat9"
-    },
-    {
-      "id": "10",
-      "name": "cat10"
-    },
-    {
-      "id": "11",
-      "name": "cat11"
-    },
-    {
-      "id": "12",
-      "name": "cat12"
-    },
-    {
-      "id": "12",
-      "name": "cat12"
-    },
-    {
-      "id": "13",
-      "name": "cat13"
-    },
-    {
-      "id": "14",
-      "name": "cat14"
-    },
-    {
-      "id": "15",
-      "name": "cat15"
-    },
-    {
-      "id": "16",
-      "name": "cat16"
+      "name": "Adventure",
+      "status": "available",
+      "createdAt": "2025-05-09T08:50:42.434Z",
+      "updatedAt": "2025-05-09T08:50:42.434Z"
     }
   ],
   "orders": [
     {
-      "id": "1",
-      "user_id": 1,
-      "price": 1000
+      "id": "001",
+      "customerId": "7",
+      "date": "2025-05-10T15:30:00.000Z",
+      "status": "pending",
+      "paymentMethod": "Credit Card",
+      "shippingAddress": {
+        "street": "123 Main Street",
+        "city": "Cairo",
+        "state": "Cairo",
+        "zip": "11511",
+        "country": "Egypt"
+      },
+      "products": [
+        {
+          "productId": "1",
+          "quantity": 1
+        },
+        {
+          "productId": "4",
+          "quantity": 2
+        }
+      ],
+      "subtotal": 1599.97,
+      "shipping": 15,
+      "tax": 160,
+      "total": 1774.97,
+      "statusNote": "Delivered on time",
+      "statusUpdatedAt": "2025-05-09T14:35:29.899Z",
+      "createdAt": "2025-05-10T15:30:00.000Z",
+      "updatedAt": "2025-05-09T14:35:29.899Z"
+    },
+    {
+      "id": "002",
+      "customerId": "8",
+      "date": "2025-05-12T09:45:00.000Z",
+      "status": "processing",
+      "paymentMethod": "PayPal",
+      "shippingAddress": {
+        "street": "456 Elm Avenue",
+        "city": "Alexandria",
+        "state": "Alexandria",
+        "zip": "21511",
+        "country": "Egypt"
+      },
+      "products": [
+        {
+          "productId": "2",
+          "quantity": 1
+        },
+        {
+          "productId": "3",
+          "quantity": 1
+        }
+      ],
+      "subtotal": 2299.98,
+      "shipping": 25,
+      "tax": 230,
+      "total": 2554.98,
+      "statusNote": "Processing for shipment",
+      "statusUpdatedAt": "2025-05-13T14:20:00.000Z",
+      "createdAt": "2025-05-12T09:45:00.000Z",
+      "updatedAt": "2025-05-13T14:20:00.000Z"
+    },
+    {
+      "id": "003",
+      "customerId": "9",
+      "date": "2025-05-14T16:15:00.000Z",
+      "status": "shipped",
+      "paymentMethod": "Debit Card",
+      "shippingAddress": {
+        "street": "789 Oak Boulevard",
+        "city": "Giza",
+        "state": "Giza",
+        "zip": "12511",
+        "country": "Egypt"
+      },
+      "products": [
+        {
+          "productId": "8",
+          "quantity": 3
+        },
+        {
+          "productId": "11",
+          "quantity": 2
+        }
+      ],
+      "subtotal": 100.22,
+      "shipping": 10,
+      "tax": 10.02,
+      "total": 120.24,
+      "statusNote": "Package in transit",
+      "statusUpdatedAt": "2025-05-16T11:30:00.000Z",
+      "createdAt": "2025-05-14T16:15:00.000Z",
+      "updatedAt": "2025-05-16T11:30:00.000Z"
+    },
+    {
+      "id": "004",
+      "customerId": "7",
+      "date": "2025-05-17T10:00:00.000Z",
+      "status": "pending",
+      "paymentMethod": "Cash on Delivery",
+      "shippingAddress": {
+        "street": "123 Main Street",
+        "city": "Cairo",
+        "state": "Cairo",
+        "zip": "11511",
+        "country": "Egypt"
+      },
+      "products": [
+        {
+          "productId": "4",
+          "quantity": 1
+        }
+      ],
+      "subtotal": 149.99,
+      "shipping": 5,
+      "tax": 15,
+      "total": 169.99,
+      "createdAt": "2025-05-17T10:00:00.000Z",
+      "updatedAt": "2025-05-17T10:00:00.000Z"
     }
   ]
 }
