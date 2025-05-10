@@ -75,7 +75,12 @@
       "status": "available",
       "createdAt": "2025-05-10T10:30:00.000Z",
       "updatedAt": "2025-05-10T10:30:00.000Z",
-      "cart": []
+      "cart": [
+        {
+          "product_id": "11",
+          "count": 1
+        }
+      ]
     },
     {
       "id": "9",
