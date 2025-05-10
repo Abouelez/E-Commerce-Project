@@ -183,7 +183,8 @@ function showAddUserModal() {
       const userData = {
         name: userName,
         email: userEmail,
-        role: userRole
+        role: userRole,
+        password: userPassword
       };
       
       const validationErrors = await UserValidator.validate(userData);
@@ -198,6 +199,9 @@ function showAddUserModal() {
         }
         if (validationErrors.role) {
           document.getElementById('userRole-error').textContent = validationErrors.role;
+        }
+        if (validationErrors.password) {
+          document.getElementById('userPassword-error').textContent = validationErrors.password;
         }
         return;
       }
