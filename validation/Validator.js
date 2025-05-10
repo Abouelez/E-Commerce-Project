@@ -69,7 +69,7 @@ export default class Validator {
                         const Model = await import(`../models/${modelClass}.js`).then(m => m.default);
                         const existing = await Model.getAll();
                         const isDuplicate = existing.some(item => 
-                            item[fieldName] === val && (!id || item.id !== parseInt(id))
+                            item[fieldName] === val && (!id || item.id != parseInt(id))
                         );
                         
                         if (isDuplicate) {

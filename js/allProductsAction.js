@@ -22,13 +22,14 @@ function renderProducts(products) {
     }
     products.forEach(product => {
         const card = document.createElement("div");
-    card.className = "product-card";
-    card.innerHTML = `
-      <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}" />
-      <h3>${product.name}</h3>
-      <p>$${product.price}</p>
-    `;
-    container.appendChild(card);
+        card.className = "product-card";
+        card.dataset.id = product.id;
+        card.innerHTML = `
+        <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}" />
+        <h3>${product.name}</h3>
+        <p>$${product.price}</p>
+        `;
+        container.appendChild(card);
     });
 }
 function renderPagination() {
@@ -112,12 +113,6 @@ async function renderCategories() {
         categoryDropdown.appendChild(option);
     });
 }
-container.addEventListener("click", (e) => {
-    const card = e.target.closest(".product-card");
-    if (card && card.dataset.id) {
-        window.location.href = `/product.html?id=${card.dataset.id}`;
-    }
-});
 
 window.addEventListener('load', async function () {
     document.getElementById('header').appendChild(loadHeader());
@@ -127,5 +122,13 @@ window.addEventListener('load', async function () {
     pagination = new Pagination(allProducts, 30);
     renderProducts(pagination.getCurrentPageItems());
     renderPagination();
+
+    container.addEventListener("click", (e) => {
+        const card = e.target.closest(".product-card");
+        if (card && card.dataset.id) {
+            window.location.href = `/product.html?id=${card.dataset.id}`;
+        }
+    });
+    
     applyBtn.addEventListener("click", applyFilters);
 })

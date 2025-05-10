@@ -23,10 +23,10 @@ export default function loadHeader() {
   
     // CART ICON
     const cartHTML = isLoggedIn
-      ? `<div id="cart-icon" class="cart-icon relative">
+      ? `<a href="/pages/cart.html" id="cart-icon" class="cart-icon relative">
            <i  class="fas fa-shopping-cart"></i>
            
-         </div>`
+         </a>`
       : '';
   
     // USER SECTION (Login Button for anonymous users)
@@ -37,7 +37,7 @@ export default function loadHeader() {
              <span class="username">Hi, ${currentUser.name}</span>
            </div>
            <div class="dropdown hidden absolute">
-             <a href="profile.html">Profile</a>
+             <a href="/pages/profile.html">Profile</a>
              <a href="#" id="logout-btn">Logout</a>
            </div>
          </div>`
