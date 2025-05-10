@@ -4,8 +4,10 @@ import UserValidator from '../validation/UserValidator.js';
 import { formValidation } from './utils/formValidation.js';
 import User from '../models/User.js';
 const user = auth.getCurrentUser();
+
 if (!user) {
-    window.location.href = '/index.html';
+    alert('plz login first')
+    window.location.href = '/pages/login.html';
 }
 window.addEventListener('load', function () {
     this.document.getElementById('header').append(loadHeader());

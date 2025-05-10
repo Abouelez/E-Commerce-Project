@@ -3,7 +3,11 @@ import Product from "../models/Product.js";
 import User from "../models/User.js";
 import { auth } from "./utils/auth.js";
 
-const userId = auth.getCurrentUser().id;
+const userId = auth.getCurrentUser()?.id;
+if (!userId) {
+    alert('plz login first');
+    window.location.href = '/pages/login.html';
+}
 const cartContainer = document.getElementById('cart-container');
 const totalContainer = document.getElementById('cart-total');
 

@@ -4,7 +4,7 @@ import Validator from './Validator.js';
 export default class UserValidator extends Validator {
     static rules = {
         name: 'required|minLength:3|maxLength:50|noNumbers',
-        email: `required|regex:^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$|unique:User,email,${auth.getCurrentUser().id}`,
+        email: `required|regex:^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$|unique:User,email,${auth.getCurrentUser()?.id}`,
         role: 'required|type:string',
         password: 'required|type:string|minLength:5|maxLength:50'
     };
