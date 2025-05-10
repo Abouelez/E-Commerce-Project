@@ -85,7 +85,7 @@ window.addEventListener('load', function () {
         const card = e.target.closest('.category-card');
         if (card) {
             const categoryId = card.getAttribute('data-id');
-            window.location.href = `allProducts.html?category=${categoryId}`;
+            window.location.href = `/pages/all.html?category=${categoryId}`;
         }
     });
 

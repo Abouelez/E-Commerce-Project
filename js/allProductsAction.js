@@ -2,6 +2,7 @@ import loadHeader from "../components/loadWebsiteHeaderwthNav.js";
 import Product from "../models/Product.js";
 import Pagination from "/js/utils/pagination.js";
 import Category from "../models/Category.js";
+const categoryId = new URLSearchParams(window.location.search).get('category');
 
 const searchInput = document.querySelector(".search-input");
 const categoryDropdown = document.querySelector(".filter-dropdown");
@@ -115,10 +116,17 @@ async function renderCategories() {
 }
 
 window.addEventListener('load', async function () {
+    
     document.getElementById('header').appendChild(loadHeader());
     renderCategories();
     allProducts = await Product.getAll();
     allProducts = allProducts.filter(product => product.status == 'approved');
+
+    if (categoryId) {
+        let category = await Category.get(categoryId);
+        category = category.name;
+        allProducts = allProducts.filter(product => product.category == category);
+    }
     pagination = new Pagination(allProducts, 30);
     renderProducts(pagination.getCurrentPageItems());
     renderPagination();
