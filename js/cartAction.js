@@ -44,13 +44,26 @@ async function renderCart() {
     `;
 
     let subtotal = 0;
+    let formattedCart = [];
 
     for (const item of cart) {
         const product = await Product.get(item.product_id);
         subtotal += product.price * item.count;
         const cartItem = createCartElement(product, item.count);
         cartContainer.appendChild(cartItem);
+        
+        // إضافة العنصر إلى السلة المنسقة
+        formattedCart.push({
+            id: item.product_id,
+            name: product.name,
+            price: product.price,
+            quantity: item.count,
+            image: product.image
+        });
     }
+
+    // مزامنة السلة مع localStorage
+    localStorage.setItem('cart', JSON.stringify(formattedCart));
 
     updateTotal(subtotal);
     attachEventListeners();
@@ -102,3 +115,20 @@ window.addEventListener('load', () => {
     
     console.log(document.querySelectorAll('button'))
 });
+
+// في نهاية الملف، أضف هذه الوظيفة للتأكد من أن السلة متاحة للصفحات الأخرى
+function syncCartWithLocalStorage(cart) {
+  // تحويل تنسيق السلة إلى التنسيق المستخدم في checkout.js
+  const formattedCart = cart.map(item => {
+    return {
+      id: item.product_id,
+      name: item.productName || 'Product',
+      price: item.price || 0,
+      quantity: item.count || 1,
+      image: item.image || 'images/placeholder.jpg'
+    };
+  });
+  
+  // حفظ السلة بالتنسيق الجديد
+  localStorage.setItem('cart', JSON.stringify(formattedCart));
+}

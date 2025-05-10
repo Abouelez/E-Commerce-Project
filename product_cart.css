@@ -92,22 +92,6 @@ input[type="number"] {
   align-items: flex-start;
 }
 
-/* منطقة الكوبون */
-.coupon-area {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.coupon-area input {
-  flex: 2;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-}
 
 .apply-btn {
   padding: 10px 16px;
@@ -125,7 +109,6 @@ input[type="number"] {
   background-color: #000;
 }
 
-/* إجمالي السلة */
 .cart-total {
   flex: 1;
   min-width: 300px;
@@ -172,7 +155,6 @@ text-decoration: none;
   background-color: #333;
 }
 
-/* ========== Product Page ========== */
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -402,4 +384,22 @@ text-decoration: none;
     width: 100%;
     padding: 15px;
   }
+}
+
+.remove-btn {
+  background-color: transparent;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s;
+}
+
+.remove-btn:hover {
+  color: #d32f2f;
+  transform: scale(1.2);
+}
+
+.remove-btn i {
+  font-size: 18px;
 }

@@ -58,7 +58,12 @@
       "status": "available",
       "createdAt": "2025-05-09T14:18:24.227Z",
       "updatedAt": "2025-05-09T14:18:24.227Z",
-      "cart": []
+      "cart": [
+        {
+          "product_id": "3",
+          "count": 1
+        }
+      ]
     },
     {
       "id": "8",
@@ -244,10 +249,10 @@
   "categories": [
     {
       "id": "1",
-      "name": "Electronic",
+      "name": "Electronics",
       "status": "available",
       "createdAt": "2023-01-10T12:00:00Z",
-      "updatedAt": "2025-05-09T15:27:18.615Z"
+      "updatedAt": "2025-05-10T09:12:07.225Z"
     },
     {
       "id": "2",
@@ -322,7 +327,7 @@
       "id": "002",
       "customerId": "8",
       "date": "2025-05-12T09:45:00.000Z",
-      "status": "processing",
+      "status": "shipped",
       "paymentMethod": "PayPal",
       "shippingAddress": {
         "street": "456 Elm Avenue",
@@ -407,6 +412,70 @@
       "total": 169.99,
       "createdAt": "2025-05-17T10:00:00.000Z",
       "updatedAt": "2025-05-17T10:00:00.000Z"
+    },
+    {
+      "id": "ede4",
+      "customerId": null,
+      "date": "2025-05-10T10:14:49.593Z",
+      "status": "pending",
+      "shippingAddress": {
+        "street": "Zagazig",
+        "city": "Zagazig",
+        "state": "zagazig",
+        "zip": "45435",
+        "country": "Egypt"
+      },
+      "products": [
+        {
+          "productId": "3",
+          "quantity": 1,
+          "price": 299.99,
+          "name": "Gaming Chair"
+        }
+      ],
+      "subtotal": 299.99,
+      "shipping": 0,
+      "tax": 29.999000000000002,
+      "total": 329.98900000000003,
+      "customer": {
+        "name": "SallyAhmed",
+        "email": "Sallyahmed@gmail.com",
+        "phone": "01149947723"
+      },
+      "createdAt": "2025-05-10T10:14:49.593Z",
+      "updatedAt": "2025-05-10T10:14:49.593Z"
+    },
+    {
+      "id": "48f8",
+      "customerId": null,
+      "date": "2025-05-10T10:25:29.764Z",
+      "status": "pending",
+      "shippingAddress": {
+        "street": "Hehia",
+        "city": "Hehia",
+        "state": "Hehia",
+        "zip": "7856",
+        "country": "Egypt"
+      },
+      "products": [
+        {
+          "productId": "8",
+          "quantity": 1,
+          "price": 12.04,
+          "name": "Book1"
+        }
+      ],
+      "subtotal": 12.04,
+      "shipping": 0,
+      "tax": 1.204,
+      "total": 13.244,
+      "customer": {
+        "name": "Mohamed Ali",
+        "email": "mohamed@example.com",
+        "phone": "01102774717"
+      },
+      "createdAt": "2025-05-10T10:25:29.764Z",
+      "updatedAt": "2025-05-10T10:25:29.764Z"
     }
   ]
 }

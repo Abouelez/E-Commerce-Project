@@ -34,8 +34,16 @@ export default class User extends Model {
     }
 
     static async removeFromCart(userId, productId) {
-        const user = await this.get(userId);
-        user.cart = user.cart.filter(item => item.product_id !== productId);
-        return User.update(userId, user);
+        try {
+            const user = await this.get(userId);
+            const productIdNum = parseInt(productId);
+            user.cart = user.cart.filter(item => parseInt(item.product_id) !== productIdNum);
+            const result = await this.update(userId, user);
+            
+            return result;
+        } catch (error) {
+            console.error(`Error removing product ${productId} from cart:`, error);
+            throw error;
+        }
     }
 }

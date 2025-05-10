@@ -1,4 +1,9 @@
 import Order from '../models/Order.js';
+import Pagination from './utils/pagination.js';
+
+// Global variables
+let orders = [];
+let pagination;
 
 document.addEventListener('DOMContentLoaded', async function() {
   // Load orders from db.json
@@ -25,26 +30,40 @@ async function loadOrders() {
     tableBody.innerHTML = '<tr><td colspan="6" class="text-center">Loading orders...</td></tr>';
     
     // Fetch orders using Order model
-    const orders = await Order.getAll();
+    orders = await Order.getAll();
     
-    // Clear loading state
-    tableBody.innerHTML = '';
+    // Initialize pagination
+    pagination = new Pagination(orders, 10); // 10 orders per page
     
-    if (orders.length === 0) {
-      tableBody.innerHTML = '<tr><td colspan="6" class="text-center">No orders found</td></tr>';
-      return;
-    }
+    // Render first page
+    renderOrders(pagination.getCurrentPageItems());
     
-    // Add orders to table
-    orders.forEach(order => {
-      addOrderToTable(order);
-    });
+    // Initialize pagination controls
+    renderPagination();
     
   } catch (error) {
     console.error('Error loading orders:', error);
     const tableBody = document.querySelector('.data-table tbody');
     tableBody.innerHTML = '<tr><td colspan="6" class="text-center">Error loading orders. Please try again.</td></tr>';
   }
+}
+
+// Render orders
+function renderOrders(ordersToRender) {
+  const tableBody = document.querySelector('.data-table tbody');
+  
+  // Clear table
+  tableBody.innerHTML = '';
+  
+  if (ordersToRender.length === 0) {
+    tableBody.innerHTML = '<tr><td colspan="6" class="text-center">No orders found</td></tr>';
+    return;
+  }
+  
+  // Add orders to table
+  ordersToRender.forEach(order => {
+    addOrderToTable(order);
+  });
 }
 
 // Add order to table
@@ -59,14 +78,14 @@ function addOrderToTable(order) {
     day: 'numeric'
   });
   
-  // Get total
-  const total = order.total || 0;
-  
   // Get customer name
   const customerName = order.customer ? order.customer.name : 'Unknown Customer';
   
   // Format order ID
-  const formattedOrderId = order.id ? `#ORD-${order.id.padStart(3, '0')}` : 'N/A';
+  const formattedOrderId = order.id ? `#ORD-${order.id.toString().padStart(3, '0')}` : 'N/A';
+  
+  // Calculate total
+  const total = order.total || 0;
   
   // Create table row
   const row = document.createElement('tr');
@@ -93,6 +112,70 @@ function addOrderToTable(order) {
   tableBody.appendChild(row);
 }
 
+// Render pagination controls
+function renderPagination() {
+  const paginationContainer = document.createElement('div');
+  paginationContainer.className = 'pagination';
+  
+  const { totalPages, currentPage } = pagination.getPageInfo();
+  
+  // Create pagination controls
+  const pageControls = document.createElement('div');
+  pageControls.className = 'page-controls';
+  
+  // Previous button
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'btn-prev';
+  prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      pagination.setPage(currentPage - 1);
+      renderOrders(pagination.getCurrentPageItems());
+      renderPagination();
+    }
+  });
+  pageControls.appendChild(prevBtn);
+  
+  // Page numbers
+  for (let i = 1; i <= totalPages; i++) {
+    const pageBtn = document.createElement('button');
+    pageBtn.className = `btn-page ${i === currentPage ? 'active' : ''}`;
+    pageBtn.textContent = i;
+    pageBtn.addEventListener('click', () => {
+      pagination.setPage(i);
+      renderOrders(pagination.getCurrentPageItems());
+      renderPagination();
+    });
+    pageControls.appendChild(pageBtn);
+  }
+  
+  // Next button
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'btn-next';
+  nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      pagination.setPage(currentPage + 1);
+      renderOrders(pagination.getCurrentPageItems());
+      renderPagination();
+    }
+  });
+  pageControls.appendChild(nextBtn);
+  
+  paginationContainer.appendChild(pageControls);
+  
+  // Replace existing pagination
+  const existingPagination = document.querySelector('.pagination');
+  if (existingPagination) {
+    existingPagination.replaceWith(paginationContainer);
+  } else {
+    // Append to content card if no existing pagination
+    document.querySelector('.content-card').appendChild(paginationContainer);
+  }
+}
+
 // Initialize view order buttons
 function initializeViewOrderButtons() {
   document.addEventListener('click', function(e) {
@@ -117,10 +200,117 @@ function initializeUpdateStatusButtons() {
       const statusBadge = row.querySelector('.status-badge');
       const currentStatus = statusBadge.textContent;
       
-      // Show update status modal
-      showUpdateStatusModal(orderId, currentStatus);
+      // Show status update dialog
+      showStatusUpdateDialog(orderId, currentStatus);
     }
   });
+}
+
+// Show status update dialog
+function showStatusUpdateDialog(orderId, currentStatus) {
+  // Create modal backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  
+  // Create modal
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  
+  // Create modal content
+  modal.innerHTML = `
+    <div class="modal-header">
+      <h3>Update Order Status</h3>
+      <button class="close-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="status-form">
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>Pending</option>
+            <option value="processing" ${currentStatus === 'processing' ? 'selected' : ''}>Processing</option>
+            <option value="shipped" ${currentStatus === 'shipped' ? 'selected' : ''}>Shipped</option>
+            <option value="delivered" ${currentStatus === 'delivered' ? 'selected' : ''}>Delivered</option>
+            <option value="cancelled" ${currentStatus === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-cancel">Cancel</button>
+          <button type="submit" class="btn-save">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  `;
+  
+  // Append modal to body
+  document.body.appendChild(backdrop);
+  document.body.appendChild(modal);
+  
+  // Add event listeners
+  modal.querySelector('.close-modal').addEventListener('click', closeModal);
+  modal.querySelector('.btn-cancel').addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  
+  // Handle form submission
+  modal.querySelector('#status-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const newStatus = modal.querySelector('#status').value;
+    
+    try {
+      // Update order status
+      await updateOrderStatus(orderId, newStatus);
+      
+      // Close modal
+      closeModal();
+      
+      // Refresh orders
+      await loadOrders();
+    } catch (error) {
+      console.error('Error updating order status:', error);
+      alert('Error updating order status. Please try again.');
+    }
+  });
+  
+  // Close modal function
+  function closeModal() {
+    document.body.removeChild(backdrop);
+    document.body.removeChild(modal);
+  }
+}
+
+// Update order status
+async function updateOrderStatus(orderId, newStatus) {
+  try {
+    // Get order
+    const response = await fetch(`http://localhost:3000/orders/${orderId}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch order');
+    }
+    
+    const order = await response.json();
+    
+    // Update status
+    order.status = newStatus;
+    
+    // Save order
+    const updateResponse = await fetch(`http://localhost:3000/orders/${orderId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(order)
+    });
+    
+    if (!updateResponse.ok) {
+      throw new Error('Failed to update order');
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error updating order status:', error);
+    throw error;
+  }
 }
 
 // Initialize search functionality
@@ -128,17 +318,33 @@ function initializeSearch() {
   const searchInput = document.querySelector('.search-box input');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      const tableRows = document.querySelectorAll('.data-table tbody tr');
+      const query = e.target.value.trim().toLowerCase();
       
-      tableRows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        if (text.includes(searchTerm)) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
+      if (query === '') {
+        // Reset to original orders
+        pagination = new Pagination(orders, 10);
+      } else {
+        // Filter orders
+        const filteredOrders = orders.filter(order => {
+          // Search by order ID
+          if (order.id && order.id.toString().includes(query)) {
+            return true;
+          }
+          
+          // Search by customer name
+          if (order.customer && order.customer.name && 
+              order.customer.name.toLowerCase().includes(query)) {
+            return true;
+          }
+          
+          return false;
+        });
+        
+        pagination = new Pagination(filteredOrders, 10);
+      }
+      
+      renderOrders(pagination.getCurrentPageItems());
+      renderPagination();
     });
   }
 }
@@ -149,109 +355,22 @@ function initializeStatusFilter() {
   if (statusFilter) {
     statusFilter.addEventListener('change', (e) => {
       const selectedStatus = e.target.value.toLowerCase();
-      const tableRows = document.querySelectorAll('.data-table tbody tr');
       
-      tableRows.forEach(row => {
-        const statusBadge = row.querySelector('.status-badge');
-        const rowStatus = statusBadge.textContent.toLowerCase();
+      if (selectedStatus === 'all') {
+        // Reset to original orders
+        pagination = new Pagination(orders, 10);
+      } else {
+        // Filter orders by status
+        const filteredOrders = orders.filter(order => 
+          order.status && order.status.toLowerCase() === selectedStatus
+        );
         
-        if (selectedStatus === 'all' || rowStatus === selectedStatus) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
+        pagination = new Pagination(filteredOrders, 10);
+      }
+      
+      renderOrders(pagination.getCurrentPageItems());
+      renderPagination();
     });
-  }
-}
-
-// Show update status modal
-function showUpdateStatusModal(orderId, currentStatus) {
-  // Create modal container
-  const modalContainer = document.createElement('div');
-  modalContainer.className = 'modal-container';
-  
-  // Create modal content
-  modalContainer.innerHTML = `
-    <div class="modal update-status-modal">
-      <div class="modal-header">
-        <h3>Update Order Status</h3>
-        <button class="btn-close"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-body">
-        <form id="update-status-form">
-          <div class="form-group">
-            <label for="orderStatus">Status</label>
-            <select id="orderStatus" required>
-              <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>Pending</option>
-              <option value="processing" ${currentStatus === 'processing' ? 'selected' : ''}>Processing</option>
-              <option value="shipped" ${currentStatus === 'shipped' ? 'selected' : ''}>Shipped</option>
-              <option value="delivered" ${currentStatus === 'delivered' ? 'selected' : ''}>Delivered</option>
-              <option value="cancelled" ${currentStatus === 'cancelled' ? 'selected' : ''}>Cancelled</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="statusNote">Note (Optional)</label>
-            <textarea id="statusNote" rows="3" placeholder="Add a note about this status change"></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="button" class="btn-cancel">Cancel</button>
-            <button type="submit" class="btn-save">Update Status</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  `;
-  
-  // Add modal to body
-  document.body.appendChild(modalContainer);
-  
-  // Add event listeners
-  const closeBtn = modalContainer.querySelector('.btn-close');
-  const cancelBtn = modalContainer.querySelector('.btn-cancel');
-  
-  closeBtn.addEventListener('click', () => {
-    document.body.removeChild(modalContainer);
-  });
-  
-  cancelBtn.addEventListener('click', () => {
-    document.body.removeChild(modalContainer);
-  });
-  
-  // Form submission
-  const form = modalContainer.querySelector('#update-status-form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const orderStatus = document.getElementById('orderStatus').value;
-    const statusNote = document.getElementById('statusNote').value;
-    
-    try {
-      // Update order status using Order model
-      await Order.updateStatus(orderId, orderStatus, statusNote);
-      
-      // Update UI
-      updateOrderStatusInTable(orderId, orderStatus);
-      
-      // Close modal
-      document.body.removeChild(modalContainer);
-      
-      // Show success message
-      alert('Order status updated successfully');
-    } catch (error) {
-      console.error('Error updating order status:', error);
-      alert('Error updating order status. Please try again.');
-    }
-  });
-}
-
-// Update order status in table
-function updateOrderStatusInTable(orderId, status) {
-  const row = document.querySelector(`tr[data-order-id="${orderId}"]`);
-  if (row) {
-    const statusBadge = row.querySelector('.status-badge');
-    statusBadge.textContent = status;
-    statusBadge.className = `status-badge ${status}`;
   }
 }
 
@@ -292,6 +411,7 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
 
 
 

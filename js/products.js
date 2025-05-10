@@ -1,3 +1,9 @@
+import Pagination from './utils/pagination.js';
+
+// Global variables
+let products = [];
+let pagination;
+
 document.addEventListener('DOMContentLoaded', async function() {
   // Load products from db.json
   await loadProducts();
@@ -12,19 +18,26 @@ document.addEventListener('DOMContentLoaded', async function() {
 // Load products from server
 async function loadProducts() {
   try {
+    // Show loading state
+    const tableBody = document.querySelector('.data-table tbody');
+    tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Loading products...</td></tr>';
+    
     const response = await fetch('http://localhost:3000/products');
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }
     
-    const products = await response.json();
+    products = await response.json();
+    
+    // Initialize pagination
+    pagination = new Pagination(products, 10); // 10 products per page
     
     // Clear existing table rows
-    const tableBody = document.querySelector('.data-table tbody');
     tableBody.innerHTML = '';
     
-    // Add products to table
-    for (const product of products) {
+    // Add products to table (first page only)
+    const currentPageProducts = pagination.getCurrentPageItems();
+    for (const product of currentPageProducts) {
       // Get seller name if available
       let sellerName = "Unknown";
       if (product.sellerId) {
@@ -43,13 +56,109 @@ async function loadProducts() {
       addProductToTable(product, sellerName);
     }
     
+    // Render pagination controls
+    renderPagination();
+    
     // Load categories for filter
     await loadCategoriesForFilter();
-    
   } catch (error) {
     console.error('Error loading products:', error);
-    alert('Error loading products. Please try again.');
+    const tableBody = document.querySelector('.data-table tbody');
+    tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Error loading products. Please try again.</td></tr>';
   }
+}
+
+// Render pagination controls
+function renderPagination() {
+  // Create pagination container if it doesn't exist
+  let paginationContainer = document.querySelector('.pagination');
+  if (!paginationContainer) {
+    paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination';
+    document.querySelector('.table-container').after(paginationContainer);
+  } else {
+    // Clear existing pagination
+    paginationContainer.innerHTML = '';
+  }
+  
+  const { totalPages, currentPage } = pagination.getPageInfo();
+  
+  // Create pagination controls
+  const pageControls = document.createElement('div');
+  pageControls.className = 'page-controls';
+  
+  // Previous button
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'btn-prev';
+  prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.addEventListener('click', async () => {
+    if (currentPage > 1) {
+      await changePage(currentPage - 1);
+    }
+  });
+  pageControls.appendChild(prevBtn);
+  
+  // Page numbers
+  for (let i = 1; i <= totalPages; i++) {
+    const pageBtn = document.createElement('button');
+    pageBtn.className = `btn-page ${i === currentPage ? 'active' : ''}`;
+    pageBtn.textContent = i;
+    pageBtn.addEventListener('click', async () => {
+      await changePage(i);
+    });
+    pageControls.appendChild(pageBtn);
+  }
+  
+  // Next button
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'btn-next';
+  nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.addEventListener('click', async () => {
+    if (currentPage < totalPages) {
+      await changePage(currentPage + 1);
+    }
+  });
+  pageControls.appendChild(nextBtn);
+  
+  paginationContainer.appendChild(pageControls);
+}
+
+// Change page
+async function changePage(pageNumber) {
+  // Update pagination
+  pagination.setPage(pageNumber);
+  
+  // Clear table
+  const tableBody = document.querySelector('.data-table tbody');
+  tableBody.innerHTML = '';
+  
+  // Get products for current page
+  const currentPageProducts = pagination.getCurrentPageItems();
+  
+  // Add products to table
+  for (const product of currentPageProducts) {
+    // Get seller name if available
+    let sellerName = "Unknown";
+    if (product.sellerId) {
+      try {
+        const sellerResponse = await fetch(`http://localhost:3000/users/${product.sellerId}`);
+        if (sellerResponse.ok) {
+          const seller = await sellerResponse.json();
+          sellerName = seller.name;
+        }
+      } catch (error) {
+        console.error('Error fetching seller:', error);
+      }
+    }
+    
+    // Add product to table with seller name
+    addProductToTable(product, sellerName);
+  }
+  
+  // Update pagination controls
+  renderPagination();
 }
 
 // Load categories for filter
@@ -82,14 +191,21 @@ function initializeFilters() {
   const statusFilter = document.getElementById('status-filter');
   const categoryFilter = document.getElementById('category-filter');
   
-  statusFilter.addEventListener('change', filterProducts);
-  categoryFilter.addEventListener('change', filterProducts);
+  if (statusFilter) {
+    statusFilter.addEventListener('change', filterProducts);
+  }
+  
+  if (categoryFilter) {
+    categoryFilter.addEventListener('change', filterProducts);
+  }
 }
 
 // Initialize search
 function initializeSearch() {
   const searchInput = document.getElementById('product-search');
-  searchInput.addEventListener('input', filterProducts);
+  if (searchInput) {
+    searchInput.addEventListener('input', filterProducts);
+  }
 }
 
 // Filter products
@@ -99,54 +215,62 @@ async function filterProducts() {
   const searchInput = document.getElementById('product-search').value.toLowerCase();
   
   try {
-    const response = await fetch('http://localhost:3000/products');
-    if (!response.ok) {
-      throw new Error('Failed to fetch products');
-    }
-    
-    let products = await response.json();
+    // Filter products based on criteria
+    let filteredProducts = [...products];
     
     // Filter by status
     if (statusFilter !== 'all') {
-      products = products.filter(product => product.status === statusFilter);
+      filteredProducts = filteredProducts.filter(product => product.status === statusFilter);
     }
     
     // Filter by category
     if (categoryFilter !== 'all') {
-      products = products.filter(product => product.categoryId === categoryFilter);
+      filteredProducts = filteredProducts.filter(product => product.categoryId === categoryFilter);
     }
     
     // Filter by search term
     if (searchInput) {
-      products = products.filter(product => 
+      filteredProducts = filteredProducts.filter(product => 
         product.name.toLowerCase().includes(searchInput) || 
-        product.category.toLowerCase().includes(searchInput)
+        (product.category && product.category.toLowerCase().includes(searchInput))
       );
     }
+    
+    // Update pagination with filtered products
+    pagination = new Pagination(filteredProducts, 10);
     
     // Clear existing table rows
     const tableBody = document.querySelector('.data-table tbody');
     tableBody.innerHTML = '';
     
-    // Add filtered products to table
-    for (const product of products) {
-      // Get seller name if available
-      let sellerName = "Unknown";
-      if (product.sellerId) {
-        try {
-          const sellerResponse = await fetch(`http://localhost:3000/users/${product.sellerId}`);
-          if (sellerResponse.ok) {
-            const seller = await sellerResponse.json();
-            sellerName = seller.name;
+    // Add filtered products to table (first page only)
+    const currentPageProducts = pagination.getCurrentPageItems();
+    
+    if (currentPageProducts.length === 0) {
+      tableBody.innerHTML = '<tr><td colspan="7" class="text-center">No products found matching your criteria</td></tr>';
+    } else {
+      for (const product of currentPageProducts) {
+        // Get seller name if available
+        let sellerName = "Unknown";
+        if (product.sellerId) {
+          try {
+            const sellerResponse = await fetch(`http://localhost:3000/users/${product.sellerId}`);
+            if (sellerResponse.ok) {
+              const seller = await sellerResponse.json();
+              sellerName = seller.name;
+            }
+          } catch (error) {
+            console.error('Error fetching seller:', error);
           }
-        } catch (error) {
-          console.error('Error fetching seller:', error);
         }
+        
+        // Add product to table with seller name
+        addProductToTable(product, sellerName);
       }
-      
-      // Add product to table with seller name
-      addProductToTable(product, sellerName);
     }
+    
+    // Update pagination controls
+    renderPagination();
     
   } catch (error) {
     console.error('Error filtering products:', error);
@@ -724,6 +848,7 @@ function notifySeller(sellerId, notificationType, productId, productName, reason
   // 2. Send an email to the seller
   // 3. Update the seller's notification count in the UI
 }
+
 
 
 

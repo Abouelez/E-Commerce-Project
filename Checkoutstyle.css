@@ -133,37 +133,50 @@ h2 {
     font-size: 16px;
 }
 
+/* حذف أنماط الكوبون */
 .coupon {
-    display: flex;
-    margin-top: 30px;
-    gap: 10px;
+    display: none;
 }
 
-.coupon input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+/* تحسين مظهر ملخص الطلب */
+.order-summary {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.coupon button,
-.place-order button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #ff6a00;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.order-summary h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.coupon button:hover,
-.place-order button:hover {
-    background-color: #ff4500;
-}
-
+/* تحسين مظهر زر إرسال الطلب */
 .place-order {
     margin-top: 20px;
+}
+
+.place-order button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.place-order button:hover {
+    background-color: #45a049;
+}
+
+.place-order button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
@@ -184,4 +197,107 @@ h2 {
     .coupon input {
         width: 100%;
     }
+}
+
+/* إضافة أنماط جديدة للنموذج */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+.error {
+    border-color: #ff3860 !important;
+}
+
+.item-quantity {
+    font-size: 14px;
+    color: #666;
+    margin-left: 5px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+/* تحسين زر إرسال الطلب */
+.place-order button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.place-order button:hover {
+    background-color: #45a049;
+}
+
+.back-to-cart {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.back-to-cart a {
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.back-to-cart a:hover {
+    color: #4CAF50;
+}
+
+.back-to-cart i {
+    margin-right: 5px;
+}
+
+/* تعطيل زر الطلب عندما تكون السلة فارغة */
+.place-order button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* تعديل حجم صورة المنتج في سلة الشراء */
+.item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.item-name {
+  flex: 1;
+  font-size: 14px;
+}
+
+.item-price {
+  font-weight: bold;
+  font-size: 14px;
 }

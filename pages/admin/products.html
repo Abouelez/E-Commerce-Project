@@ -30,20 +30,18 @@
       </div>
 
       <div class="content-card">
-        <div class="table-toolbar">
+        <div class="filters">
           <div class="search-box">
+            <input type="text" id="product-search" placeholder="Search products...">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search" id="product-search">
           </div>
-          <div class="filter-box">
+          <div class="filter-group">
             <select id="status-filter">
-              <option value="all">All Status</option>
-              <option value="pending">Pending</option>
+              <option value="all">All Statuses</option>
               <option value="approved">Approved</option>
+              <option value="pending">Pending</option>
               <option value="rejected">Rejected</option>
             </select>
-          </div>
-          <div class="filter-box">
             <select id="category-filter">
               <option value="all">All Categories</option>
               <!-- Categories will be loaded dynamically -->
@@ -69,6 +67,7 @@
             </tbody>
           </table>
         </div>
+        <!-- Pagination will be added here dynamically -->
       </div>
     </main>
   </div>
@@ -84,8 +83,9 @@
     </div>
   </div>
 
-  <script src="/js/products.js"></script>
+  <script type="module" src="/js/products.js"></script>
 </body>
 </html>
+
 
 

@@ -263,16 +263,11 @@ function updatePopularProducts(products) {
 
 // Initialize charts
 function initializeCharts() {
-  // This function would initialize charts using a library like Chart.js
-  // For now, we'll just display a message in the chart placeholders
   
   const chartPlaceholders = document.querySelectorAll('.chart-placeholder');
   chartPlaceholders.forEach(placeholder => {
     placeholder.innerHTML = '<p>Chart data loaded. Connect Chart.js to visualize.</p>';
   });
   
-  // If you want to implement actual charts, you would need to:
-  // 1. Include Chart.js in your HTML
-  // 2. Create canvas elements in your chart containers
-  // 3. Initialize charts with data from your API
+
 }
