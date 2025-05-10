@@ -12,6 +12,10 @@
         {
           "product_id": "10",
           "count": 1
+        },
+        {
+          "product_id": "1",
+          "count": 1
         }
       ]
     },
