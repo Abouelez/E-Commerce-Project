@@ -18,20 +18,33 @@ window.addEventListener('load', async function () {
 
     const quantityInput = document.getElementById('quan');
     document.querySelector('.increment').onclick = () => {
-    quantityInput.value = parseInt(quantityInput.value) + 1;
+        quantityInput.value = parseInt(quantityInput.value) + 1;
     };
     document.querySelector('.decrement').onclick = () => {
-    const current = parseInt(quantityInput.value);
-    if (current > 1) quantityInput.value = current - 1;
+        const current = parseInt(quantityInput.value);
+        if (current > 1) quantityInput.value = current - 1;
     };
+    
     document.querySelector('.buy-now').addEventListener('click', async function (e) {
+        e.preventDefault();
+        
+        if (!user) {
+            alert('Please login to continue!');
+            window.location.href = '/pages/login.html';
+            return;
+        }
+        
         const quantity = parseInt(quantityInput.value);
-        user = await User.get(user.id);
-        user.cart = [{product_id: productId, count: quantity}];
-        User.update(user.id, user).then((res) => {
-            if (res) {
-                this.window.location.href = '/pages/Checkout.html';
-            }
-        })
+        
+        try {
+            // إضافة المنتج إلى سلة المستخدم
+            await User.addToCart(user.id, productId, quantity);
+            
+            // الانتقال إلى صفحة الدفع
+            window.location.href = '/pages/cart.html';
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+            alert('error adding product to cart');
+        }
     });
 })

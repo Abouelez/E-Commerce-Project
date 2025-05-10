@@ -81,7 +81,11 @@
       "updatedAt": "2025-05-10T10:30:00.000Z",
       "cart": [
         {
-          "product_id": "11",
+          "product_id": 8,
+          "count": 2
+        },
+        {
+          "product_id": 4,
           "count": 1
         }
       ]
