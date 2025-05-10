@@ -125,12 +125,12 @@
       "name": "iPhone 1",
       "price": 1299.99,
       "categoryId": "1",
-      "category": "Electronics",
+      "category": "Electronic",
       "description": "The latest iPhone with advanced features and improved camera.",
-      "image": "/assets/products/iphone.jpg",
+      "image": "/assets/products/1.jpg",
       "status": "approved",
       "createdAt": "2025-05-09T08:30:00.000Z",
-      "updatedAt": "2025-05-09T11:42:07.363Z"
+      "updatedAt": "2025-05-09T22:01:11.399Z"
     },
     {
       "id": "2",
@@ -140,7 +140,7 @@
       "categoryId": "1",
       "category": "Electronics",
       "description": "Powerful laptop with the latest M3 chip.",
-      "image": "/assets/products/macbook.jpg",
+      "image": "/assets/products/2.jpg",
       "status": "approved",
       "createdAt": "2025-05-09T09:15:00.000Z",
       "updatedAt": "2025-05-09T09:15:00.000Z"
@@ -153,7 +153,7 @@
       "categoryId": "5",
       "category": "Gaming",
       "description": "Ergonomic gaming chair with lumbar support.",
-      "image": "/assets/products/chair.jpg",
+      "image": "/assets/products/3.jpg",
       "status": "approved",
       "createdAt": "2025-05-09T10:20:00.000Z",
       "updatedAt": "2025-05-09T11:39:27.527Z",
@@ -167,7 +167,7 @@
       "categoryId": "1",
       "category": "Electronics",
       "description": "High-quality wireless earbuds with noise cancellation.",
-      "image": "/assets/products/earbuds.jpg",
+      "image": "/assets/products/4.jpg",
       "status": "approved",
       "createdAt": "2025-05-09T11:45:00.000Z",
       "updatedAt": "2025-05-09T11:45:00.000Z"
@@ -180,7 +180,7 @@
       "categoryId": "1",
       "category": "Electronics",
       "description": "Feature-rich smartwatch with health monitoring.",
-      "image": "/assets/products/watch.jpg",
+      "image": "/assets/products/belt.jpg",
       "status": "rejected",
       "createdAt": "2025-05-09T12:30:00.000Z",
       "updatedAt": "2025-05-09T12:30:00.000Z"
@@ -193,7 +193,7 @@
       "categoryId": "3",
       "category": "Books",
       "description": "asfasfasf",
-      "image": "/assets/products/image-placeholder.jpg",
+      "image": "/assets/products/clothes-1.jpg",
       "status": "pending",
       "createdAt": "2025-05-09T11:43:37.236Z",
       "updatedAt": "2025-05-09T11:43:37.236Z"
@@ -206,7 +206,7 @@
       "categoryId": "3",
       "category": "Books",
       "description": "ffwefew",
-      "image": "/assets/products/image-placeholder.jpg",
+      "image": "/assets/products/clothes-2.jpg",
       "status": "approved",
       "createdAt": "2025-05-09T11:51:55.104Z",
       "updatedAt": "2025-05-09T11:56:24.387Z",
@@ -220,7 +220,7 @@
       "categoryId": "5",
       "category": "Gaming",
       "description": "wefwf",
-      "image": "/assets/products/image-placeholder.jpg",
+      "image": "/assets/products/clothes-3.jpg",
       "status": "pending",
       "createdAt": "2025-05-09T12:14:59.561Z",
       "updatedAt": "2025-05-09T12:14:59.561Z"
@@ -233,7 +233,7 @@
       "categoryId": "1",
       "category": "Electronics",
       "description": "affasf",
-      "image": "/assets/products/bg3.jpg",
+      "image": "/assets/products/clothes-4.jpg",
       "status": "pending",
       "createdAt": "2025-05-09T12:28:24.707Z",
       "updatedAt": "2025-05-09T12:28:24.707Z"
@@ -246,7 +246,7 @@
       "categoryId": "2",
       "category": "Clothing",
       "description": "dfsdsds",
-      "image": "/assets/products/bg10-dark.jpeg",
+      "image": "/assets/products/jacket-1.jpg",
       "status": "approved",
       "createdAt": "2025-05-09T13:01:37.657Z",
       "updatedAt": "2025-05-09T13:02:04.752Z",
@@ -302,7 +302,7 @@
       "id": "001",
       "customerId": "7",
       "date": "2025-05-10T15:30:00.000Z",
-      "status": "pending",
+      "status": "processing",
       "paymentMethod": "Credit Card",
       "shippingAddress": {
         "street": "123 Main Street",
@@ -326,9 +326,9 @@
       "tax": 160,
       "total": 1774.97,
       "statusNote": "Delivered on time",
-      "statusUpdatedAt": "2025-05-09T14:35:29.899Z",
+      "statusUpdatedAt": "2025-05-10T09:03:05.871Z",
       "createdAt": "2025-05-10T15:30:00.000Z",
-      "updatedAt": "2025-05-09T14:35:29.899Z"
+      "updatedAt": "2025-05-10T09:03:05.871Z"
     },
     {
       "id": "002",
