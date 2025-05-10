@@ -74,7 +74,7 @@ export const auth = {
     redirectToDashboard: () => {
         const user = auth.getCurrentUser(); 
         if (!user) return;
-        window.location.href = '/E-Commerce-Project/index.html';
+        window.location.href = '/index.html';
         // switch (user.role) {
         //     case 'admin':
         //         window.location.href = '../../pages/dashboard.html';

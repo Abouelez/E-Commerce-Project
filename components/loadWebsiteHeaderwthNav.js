@@ -8,12 +8,13 @@ export default function loadHeader() {
     header.classList.add('header', 'flex', 'space-between', 'align-center', 'wrap');
   
     // NAV LINKS
-    let navLinks = `
-      
+  let navLinks = `
+    <a href="/index.html">Home</a>
+      <a href="/pages/all.html">All Products</a>
     `;
   
     if (isAdminOrSeller) {
-      navLinks += `<a href="pages/admin/dashboard.html">Dashboard</a>`;
+      navLinks = `<a href="/pages/admin/dashboard.html">Dashboard</a>` + navLinks;
     }
   
   

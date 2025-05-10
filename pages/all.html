@@ -6,7 +6,8 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <title>All Products</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <script src="/js/allProductsAction.js" type="module"></script>
 </head>
 <body>
     <!-- Top Banner -->
@@ -16,31 +17,8 @@
   </div>
 
   <!-- Header -->
-  <header class="header flex space-between align-center wrap">
-    <div class="logo">Exclusive</div>
-    <nav class="nav-links flex wrap">
-      <a href="#" class="active">Home</a>
-      <a href="#">Contact</a>
-      <a href="#">About</a>
-      <a href="#">Sign Up</a>
-    </nav>
-    <div class="search-container flex align-center">
-      <input type="text" placeholder="What are you looking for?" />
-      <i class="fas fa-search"></i>
-    </div>
-    <div class="icons flex align-center">
-      <i class="far fa-heart"></i>
-      <div class="cart-icon relative">
-        <div class="cart-icon relative" onclick="window.location.href='product_cart.html#cart-container'" style="cursor: pointer;">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="badge">2</span>
-        </div>
-        <span class="badge">2</span>
-      </div>
-      <div class="user-icon">
-        <i class="fas fa-user"></i>
-      </div>
-    </div>
+  <header id="header">
+    
   </header>
 
   <header>
@@ -51,11 +29,11 @@
     <input type="text" placeholder="Search products..." class="search-input" />
 
     <select class="filter-dropdown">
-      <option value="">All Categories</option>
+      <!-- <option value="">All Categories</option>
       <option value="men">Men</option>
       <option value="women">Women</option>
       <option value="kids">Kids</option>
-      <option value="accessories">Accessories</option>
+      <option value="accessories">Accessories</option> -->
     </select>
 
     <div class="price-range">
@@ -67,20 +45,10 @@
     <button class="filter-btn">Apply Filters</button>
   </section>
 
-  <section class="products-grid">
-    <div class="product-card">
-      <img src="product1.jpg" alt="Product 1" />
-      <h3>Product 1</h3>
-      <p>$29.99</p>
-    </div>
-    <div class="product-card">
-      <img src="product2.jpg" alt="Product 2" />
-      <h3>Product 2</h3>
-      <p>$34.99</p>
-    </div>
-    <!-- More product cards... -->
+  <section class="products-grid" id="productsContainer">
+    <!-- Products will be rendered here -->
   </section>
-
+  <div class="pagination" id="paginationContainer"></div>
   <footer class="footer">
     <div class="footer-container flex wrap space-between">
       <div class="footer-column">

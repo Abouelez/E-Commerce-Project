@@ -52,7 +52,8 @@ function setupPaginationButtons() {
 }
 
 async function loadFeaturedProducts() {
-    const products = await Product.getAll();
+    let products = await Product.getAll();
+    products = products.filter(product => product.status == 'approved');
     const featured = [...products].sort(() => Math.random() - 0.5).slice(0, 4);
     console.log(featured);
     renderFeaturedProducts(featured);

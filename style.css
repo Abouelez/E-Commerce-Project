@@ -430,7 +430,8 @@ img {
 
 .product-card img {
   max-width: 100%;
-  height: auto;
+  height: 15rem;
+  width: 100%;
   border-radius: 0.5rem;
 }
 
@@ -463,4 +464,38 @@ img {
 }
 .hidden {
   display: none;
+}
+
+
+#paginationContainer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+#paginationContainer button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+#paginationContainer button:hover {
+  background-color: #f0f0f0;
+}
+
+#paginationContainer button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+#paginationContainer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

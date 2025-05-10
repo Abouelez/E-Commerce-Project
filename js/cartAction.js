@@ -21,7 +21,7 @@ function createCartElement(product, cnt) {
         <div>
             <input type="number" min="1" value="${cnt}" data-id="${product.id}" class="qty-input" />
             <button class="remove-btn" data-id="${product.id}" title="Remove">
-                <i class="fas fa-trash"></i>
+                <i  class="fas fa-trash"></i>
             </button>
         </div>
         <div class="item-total">$${totalPrice.toFixed(2)}</div>
@@ -53,6 +53,7 @@ async function renderCart() {
     }
 
     updateTotal(subtotal);
+    attachEventListeners();
 }
 
 function updateTotal(subtotal) {
@@ -61,7 +62,7 @@ function updateTotal(subtotal) {
         <div class="total-line"><span>Subtotal:</span><span>$${subtotal.toFixed(2)}</span></div>
         <div class="total-line"><span>Shipping:</span><span>$0.00</span></div>
         <div class="total-line total"><span>Total:</span><span>$${subtotal.toFixed(2)}</span></div>
-        <a href="Checkout.html" class="checkout-btn">Proceed to Checkout</a>
+        <a href="../pages/Checkout.html" class="checkout-btn">Proceed to Checkout</a>
     `;
 }
 
@@ -69,10 +70,13 @@ function updateTotal(subtotal) {
 function attachEventListeners() {
     cartContainer.addEventListener('click', async (e) => {
         // Handle remove button click
-        if (e.target.classList.contains('remove-btn')) {
-            const productId = parseInt(e.target.dataset.id);
+        const r_btn = e.target.closest('.remove-btn');
+        if (r_btn) {
+            const productId = parseInt(r_btn.dataset.id);
+            console.log(productId);
+            console.log(userId);
             await User.removeFromCart(userId, productId);
-            renderCart();  // Re-render cart after removing item
+            // renderCart();  // Re-render cart after removing item
         }
     });
 
@@ -84,6 +88,7 @@ function attachEventListeners() {
             if (newCount >= 1) {
                 await User.addToCart(userId, productId, newCount, true); // Update cart count
                 renderCart();  // Re-render cart after updating quantity
+                attachEventListeners();
             }
         }
     });
@@ -93,4 +98,7 @@ window.addEventListener('load', () => {
     document.getElementById('header').appendChild(loadHeader());
     renderCart();   // Initial render
     attachEventListeners();   // Attach event delegation
+
+    
+    console.log(document.querySelectorAll('button'))
 });
