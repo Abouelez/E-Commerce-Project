@@ -126,7 +126,7 @@ window.addEventListener('load', async function () {
     container.addEventListener("click", (e) => {
         const card = e.target.closest(".product-card");
         if (card && card.dataset.id) {
-            window.location.href = `/product.html?id=${card.dataset.id}`;
+            window.location.href = `/pages/product.html?id=${card.dataset.id}`;
         }
     });
     
